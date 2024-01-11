@@ -880,8 +880,38 @@ MapConfig gv_maps[] = {
     { MAP(gv_01) },
 };
 
+#include "area_don/don.h"
+MapConfig don_maps[] = {
+    { MAP_WITH_INIT(don_01), .bgName = "nok_bg" },
+    { MAP_WITH_INIT(don_02), .bgName = "nok_bg" },
+    { MAP_WITH_INIT(don_03), .bgName = "nok_bg" },
+    { MAP_WITH_INIT(don_04), .bgName = "nok_bg" },
+    { MAP_WITH_INIT(don_05), .bgName = "nok_bg" },
+    { MAP_WITH_INIT(don_06), .bgName = "nok_bg" },
+    { MAP_WITH_INIT(don_07), .bgName = "nok_bg"},
+};
+
+#include "area_ash/ash.h"
+MapConfig ash_maps[] = {
+    { MAP_WITH_INIT(ash_01), .bgName = "arn_bg"},
+};
+
+#include "area_gar/gar.h"
+MapConfig gar_maps[] = {
+    { MAP_WITH_INIT(gar_01), .bgName = "nok_bg" },
+};
+
+#include "area_abv/abv.h"
+MapConfig abv_maps[] = {
+    { MAP_WITH_INIT(abv_01), .bgName = "yki_bg"},
+};
+
 AreaConfig gAreas[] = {
     AREA(kmr, "クリむら"),  // kuri mura [kuribou village, Goomba Village]
+    AREA(don, "テストマップ"),
+    AREA(ash, "テストマップ"),
+    AREA(gar, "テストマップ"),
+    AREA(abv, "テストマップ"),
     AREA(mac, "まち"),  // machi [town, Toad Town]
     AREA(tik, "まちのちか"),  // machi no chika [under the town, Toad Town Tunnels]
     AREA(kgr, "くじらのなか"),  // kujira no naka [inside the whale]

@@ -1347,7 +1347,7 @@ SHIFT_BSS u16 mtg_SearchModelID;
 SHIFT_BSS RenderTask* RenderTaskLists[NUM_RENDER_TASK_LISTS];
 SHIFT_BSS s32 RenderTaskCount[NUM_RENDER_TASK_LISTS];
 
-SHIFT_BSS TextureHandle TextureHandles[128];
+SHIFT_BSS TextureHandle TextureHandles[256];
 
 SHIFT_BSS u16 DepthCopyBuffer[16];
 

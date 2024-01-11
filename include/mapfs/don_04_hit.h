@@ -1,0 +1,72 @@
+#define COLLIDER_don_04_Root 0x3F
+#define COLLIDER_don_04_WestEntryArea 0xC
+#define COLLIDER_don_04_MeshCollider 0x0
+#define COLLIDER_don_04_DrawnCollider 0x1
+#define COLLIDER_don_04_DrawnCollider 0x2
+#define COLLIDER_don_04_DrawnCollider 0x3
+#define COLLIDER_don_04_MeshCollider 0x4
+#define COLLIDER_don_04_MeshCollider 0x5
+#define COLLIDER_don_04_DrawnCollider 0x6
+#define COLLIDER_don_04_DrawnCollider 0x7
+#define COLLIDER_don_04_MeshCollider 0x8
+#define COLLIDER_don_04_Split Collider 0x9
+#define COLLIDER_don_04_DrawnCollider 0xA
+#define COLLIDER_don_04_DrawnCollider 0xB
+#define COLLIDER_don_04_Bomp1Area 0x19
+#define COLLIDER_don_04_MeshCollider 0xD
+#define COLLIDER_don_04_MeshCollider 0xE
+#define COLLIDER_don_04_MeshCollider 0xF
+#define COLLIDER_don_04_MeshCollider 0x10
+#define COLLIDER_don_04_DrawnCollider 0x11
+#define COLLIDER_don_04_DrawnCollider 0x12
+#define COLLIDER_don_04_Split Collider 0x13
+#define COLLIDER_don_04_MeshCollider 0x14
+#define COLLIDER_don_04_bomp1 0x15
+#define COLLIDER_don_04_DrawnCollider 0x16
+#define COLLIDER_don_04_DrawnCollider 0x17
+#define COLLIDER_don_04_DrawnCollider 0x18
+#define COLLIDER_don_04_AfterBomp1 0x23
+#define COLLIDER_don_04_MeshCollider 0x1A
+#define COLLIDER_don_04_MeshCollider 0x1B
+#define COLLIDER_don_04_MeshCollider 0x1C
+#define COLLIDER_don_04_treelarge 0x1D
+#define COLLIDER_don_04_treesmall 0x1E
+#define COLLIDER_don_04_treemedium 0x1F
+#define COLLIDER_don_04_DrawnCollider 0x20
+#define COLLIDER_don_04_DrawnCollider 0x21
+#define COLLIDER_don_04_DrawnCollider 0x22
+#define COLLIDER_don_04_EastArea 0x28
+#define COLLIDER_don_04_MeshCollider 0x24
+#define COLLIDER_don_04_DrawnCollider 0x25
+#define COLLIDER_don_04_DrawnCollider 0x26
+#define COLLIDER_don_04_DrawnCollider 0x27
+#define COLLIDER_don_04_Bomp2Area 0x32
+#define COLLIDER_don_04_MeshCollider 0x29
+#define COLLIDER_don_04_MeshCollider 0x2A
+#define COLLIDER_don_04_bomp2 0x2B
+#define COLLIDER_don_04_MeshCollider 0x2C
+#define COLLIDER_don_04_MeshCollider 0x2D
+#define COLLIDER_don_04_bm3 0x2E
+#define COLLIDER_don_04_bm4 0x2F
+#define COLLIDER_don_04_DrawnCollider 0x30
+#define COLLIDER_don_04_MeshCollider 0x31
+#define COLLIDER_don_04_CenterMushArea 0x3C
+#define COLLIDER_don_04_MeshCollider 0x33
+#define COLLIDER_don_04_MeshCollider 0x34
+#define COLLIDER_don_04_bm1 0x35
+#define COLLIDER_don_04_bm2 0x36
+#define COLLIDER_don_04_MeshCollider 0x37
+#define COLLIDER_don_04_DrawnCollider 0x38
+#define COLLIDER_don_04_MeshCollider 0x39
+#define COLLIDER_don_04_DrawnCollider 0x3A
+#define COLLIDER_don_04_DrawnCollider 0x3B
+#define COLLIDER_don_04_LZEast 0x3D
+#define COLLIDER_don_04_LZWest 0x3E
+
+
+#define ZONE_don_04_Root 0x1
+#define ZONE_don_04_DrawnZone 0x0
+
+
+#define ENTRY_don_04_EntryWest 0
+#define ENTRY_don_04_EntryEast 1
