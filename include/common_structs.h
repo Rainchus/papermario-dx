@@ -153,7 +153,10 @@ typedef struct DmaTable {
 typedef struct PartnerData {
     /* 0x00 */ u8 enabled;
     /* 0x01 */ s8 level;
-    /* 0x02 */ s16 unk_02[3];
+    /* 0x02 */ u8 curHp;
+    /* 0x03 */ u8 maxHp;
+    /* 0x04 */ u8 trueMaxHp;
+    /* 0x05 */ char unk_05[3];
 } PartnerData; // size = 0x08
 
 typedef struct HeapNode {
@@ -308,13 +311,13 @@ typedef Npc* NpcList[MAX_NPCS];
 typedef struct PlayerData {
     /* 0x000 */ s8 bootsLevel;
     /* 0x001 */ s8 hammerLevel;
-    /* 0x002 */ s8 curHP;
-    /* 0x003 */ s8 curMaxHP;
-    /* 0x004 */ s8 hardMaxHP;
-    /* 0x005 */ s8 curFP;
-    /* 0x006 */ s8 curMaxFP;
-    /* 0x007 */ s8 hardMaxFP;
-    /* 0x008 */ s8 maxBP;
+    /* 0x002 */ u8 curHP;
+    /* 0x003 */ u8 curMaxHP;
+    /* 0x004 */ u8 hardMaxHP;
+    /* 0x005 */ u8 curFP;
+    /* 0x006 */ u8 curMaxFP;
+    /* 0x007 */ u8 hardMaxFP;
+    /* 0x008 */ u8 maxBP;
     /* 0x009 */ s8 level;
     /* 0x00A */ b8 hasActionCommands;
     /* 0x00B */ char pad_00B;
@@ -1879,8 +1882,8 @@ typedef struct Actor {
     /* 0x19B */ char unk_19B[1];
     /* 0x19C */ s32 actorTypeData1[6]; /* 4 = jump sound, 5 = attack sound */ // TODO: struct
     /* 0x1B4 */ s16 actorTypeData1b[2];
-    /* 0x1B8 */ s8 curHP;
-    /* 0x1B9 */ s8 maxHP;
+    /* 0x1B8 */ u8 curHP;
+    /* 0x1B9 */ u8 maxHP;
     /* 0x1BA */ char unk_1BA[2];
     /* 0x1BC */ s8 healthFraction; /* used to render HP bar */
     /* 0x1BD */ char unk_1BD[3];

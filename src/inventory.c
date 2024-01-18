@@ -2,6 +2,8 @@
 #include "hud_element.h"
 #include "dx/config.h"
 
+#include "inventory_data.c"
+
 #define FULLY_EXTENDED_Y  18
 #define FULLY_RETRACTED_Y -100
 
@@ -48,6 +50,29 @@ extern HudScript* SlashHudScript;
 void status_bar_start_blinking_coins(void);
 void status_bar_stop_blinking_coins(void);
 
+#define DRAW_BOX(flags, style, xPos, yPos, width, height, opacity) draw_box(flags, style, xPos, yPos, 0, width, height, opacity, 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, NULL, NULL, NULL, SCREEN_WIDTH, SCREEN_HEIGHT, NULL)
+
+typedef struct PartnerHpList {
+    u8 level0Hp;
+    u8 level1Hp;
+    u8 level2Hp;
+    u8 level3Hp;
+} PartnerHpList;
+
+PartnerHpList partnerHpList[] = {
+    {10, 15, 20, 25},
+    {10, 15, 20, 25},
+    {10, 15, 20, 25},
+    {10, 15, 20, 25},
+    {10, 15, 20, 25},
+    {10, 15, 20, 25},
+    {10, 15, 20, 25},
+    {10, 15, 20, 25},
+    {10, 15, 20, 25},
+    {10, 15, 20, 25},
+    {10, 15, 20, 25},
+};
+
 void clear_player_data(void) {
     PlayerData* playerData = &gPlayerData;
     s32 i;
@@ -83,9 +108,9 @@ void clear_player_data(void) {
     for (i = 0; i < ARRAY_COUNT(playerData->partners); i++) {
         playerData->partners[i].enabled = FALSE;
         playerData->partners[i].level = PARTNER_RANK_NORMAL;
-        playerData->partners[i].unk_02[0] = 0;
-        playerData->partners[i].unk_02[1] = 0;
-        playerData->partners[i].unk_02[2] = 0;
+        playerData->partners[i].curHp = partnerHpList[i].level0Hp;
+        playerData->partners[i].maxHp = partnerHpList[i].level0Hp;
+        playerData->partners[i].trueMaxHp = partnerHpList[i].level0Hp;
     }
 
     for (i = 0; i < ARRAY_COUNT(playerData->keyItems); i++) {
@@ -387,12 +412,12 @@ void initialize_status_bar(void) {
     hud_element_set_flags(iconIndex, HUD_ELEMENT_FLAG_80);
     hud_element_clear_flags(iconIndex, HUD_ELEMENT_FLAG_FILTER_TEX);
 #else
-    statusBar->hpIconHIDs[0] = iconIndex = hud_element_create(&HES_StatusHP);
+    statusBar->hpIconHIDs[0] = iconIndex = hud_element_create(&MasterHeadRedHPScript);
     hud_element_set_flags(iconIndex, HUD_ELEMENT_FLAG_80);
     hud_element_clear_flags(iconIndex, HUD_ELEMENT_FLAG_FILTER_TEX);
 #endif
 
-    statusBar->hpIconHIDs[1] = iconIndex = hud_element_create(&HES_StatusHeart);
+    statusBar->hpIconHIDs[1] = iconIndex = hud_element_create(&HeartIconScript);
     hud_element_set_flags(iconIndex, HUD_ELEMENT_FLAG_80);
     hud_element_clear_flags(iconIndex, HUD_ELEMENT_FLAG_FILTER_TEX);
 
@@ -415,7 +440,7 @@ void initialize_status_bar(void) {
     hud_element_set_flags(iconIndex, HUD_ELEMENT_FLAG_80);
     hud_element_clear_flags(iconIndex, HUD_ELEMENT_FLAG_FILTER_TEX);
 #else
-    statusBar->fpIconHIDs[0] = iconIndex = hud_element_create(&HES_StatusFP);
+    statusBar->fpIconHIDs[0] = iconIndex = hud_element_create(&FlowerIconScript);
     hud_element_set_flags(iconIndex, HUD_ELEMENT_FLAG_80);
     hud_element_clear_flags(iconIndex, HUD_ELEMENT_FLAG_FILTER_TEX);
 #endif
@@ -502,21 +527,29 @@ void status_bar_draw_number(s32 iconID, s32 startX, s32 startY, s32 value, s32 n
 }
 
 void status_bar_draw_stat(s32 id, s32 startX, s32 startY, s32 currentValue, s32 maxValue) {
-    s8 digits[4];
+    s8 digits[6]; // Increase the size to accommodate up to 3 digits for each value
     b32 keepDrawing;
     s32 digit;
-    s32 numDigits = 2;
+    s32 numDigits = 3; // Set to 3 for up to 3 digits
     s32 drawX;
     s32 drawY;
     s32 i = 0;
-    s32 baseX = startX + 8;
+    s32 baseX = startX;
     s32 baseY = startY + 8;
+    s32 maxValueCopy = maxValue;
 
     hud_element_set_script(id, SlashHudScript);
-    hud_element_set_render_pos(id, baseX + 14, baseY + 1);
+
+    // if (maxValue < 100) {
+    //     hud_element_set_render_pos(id, baseX + 22, baseY + 1);
+    // } else {
+    //     hud_element_set_render_pos(id, baseX + 30, baseY + 1);
+    // }
+    hud_element_set_render_pos(id, baseX + 22, baseY + 1);
     hud_element_clear_flags(id, HUD_ELEMENT_FLAG_DISABLED);
     hud_element_draw_next(id);
 
+    // Extracting digits from currentValue
     for (i = 0; i < numDigits; i++) {
         s32 num = currentValue % 10;
         digits[numDigits - i - 1] = num;
@@ -526,6 +559,7 @@ void status_bar_draw_stat(s32 id, s32 startX, s32 startY, s32 currentValue, s32 
     drawX = baseX;
     drawY = baseY;
     keepDrawing = FALSE;
+    // Drawing digits for currentValue
     for (i = 0; i < numDigits; i++, drawX += 8) {
         digit = digits[i];
         if (digit != 0 || keepDrawing || i == numDigits - 1) {
@@ -537,14 +571,20 @@ void status_bar_draw_stat(s32 id, s32 startX, s32 startY, s32 currentValue, s32 
         }
     }
 
+    // Extracting digits from maxValue
     for (i = 0; i < numDigits; i++) {
         digits[numDigits - i - 1] = maxValue % 10;
         maxValue /= 10;
     }
 
+    if (maxValueCopy >= 100) {
+        baseX += 8;
+    }
+
     drawX = baseX + 26;
     drawY = baseY;
     keepDrawing = FALSE;
+    // Drawing digits for maxValue
     for (i = 0; i < numDigits; i++, drawX += 8) {
         digit = digits[i];
         if (digit != 0 || keepDrawing || i == numDigits - 1) {
@@ -556,6 +596,7 @@ void status_bar_draw_stat(s32 id, s32 startX, s32 startY, s32 currentValue, s32 
         }
     }
 }
+
 
 void update_status_bar(void) {
     StatusBar* statusBar = &gStatusBar;
@@ -741,8 +782,20 @@ void update_status_bar(void) {
     gDPSetScissor(gMainGfxPos++, G_SC_NON_INTERLACE, 12, 20, SCREEN_WIDTH - 12, SCREEN_HEIGHT - 20);
     x = statusBar->drawPosX;
     y = statusBar->drawPosY;
-    draw_box(0, WINDOW_STYLE_5, x,       y, 0, 174, 35, 255, 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, NULL, NULL, NULL, SCREEN_WIDTH, SCREEN_HEIGHT, NULL);
-    draw_box(0, WINDOW_STYLE_6, x + 174, y, 0, 122, 25, 255, 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, NULL, NULL, NULL, SCREEN_WIDTH, SCREEN_HEIGHT, NULL);
+    //original c-up menu code
+    //draw_box(0, WINDOW_STYLE_5, x,       y, 0, 174, 35, 255, 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, NULL, NULL, NULL, SCREEN_WIDTH, SCREEN_HEIGHT, NULL);
+    //draw_box(0, WINDOW_STYLE_6, x + 174, y, 0, 122, 25, 255, 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, NULL, NULL, NULL, SCREEN_WIDTH, SCREEN_HEIGHT, NULL);
+    
+    //draw hp bars
+    DRAW_BOX(0, (WindowStyle)WINDOW_STYLE_26, x + hp_bar_offset_x, y + hp_bar_offset_y, hp_bar_width, hp_bar_height, 255);
+    DRAW_BOX(0, (WindowStyle)WINDOW_STYLE_26, x + hp_bar_offset_x, y + hp_bar_offset_y + 0x15, hp_bar_width, hp_bar_height, 255);
+    
+    //draw fp bar
+    DRAW_BOX(0, (WindowStyle)WINDOW_STYLE_23, x + hp_bar_offset_x + 92, y + hp_bar_offset_y, 91, 28, 255);
+    
+    //draw coins/exp box
+    DRAW_BOX(0, (WindowStyle)WINDOW_STYLE_25, x + hp_bar_offset_x + 178, y + hp_bar_offset_y, 116, hp_bar_height, 255);
+
 
     if (statusBar->hpBlinkTimer > 0) {
         statusBar->hpBlinkTimer--;
@@ -763,22 +816,40 @@ void update_status_bar(void) {
         statusBar->hpBlinkCounter++;
     }
 
-    if (showStat) {
-        id = statusBar->hpIconHIDs[0];
-        x = statusBar->drawPosX + 22;
-        y = statusBar->drawPosY + 13;
-        hud_element_set_render_pos(id, x, y);
-        hud_element_draw_next(id);
+    if (showStat) { //draw new HP icon
+        s32 hpXPosBase = x + 18;
+        s32 hpYPosBase = y + 13;
 
+        ReplaceHeartIconPalette(HeartCI4PaletteBlue); //make blue always currently
+        //draw player heart icon
         id = statusBar->hpIconHIDs[1];
-        x = statusBar->drawPosX + 37;
-        y = statusBar->drawPosY + 13;
-        hud_element_set_render_pos(id, x, y);
+        hud_element_set_render_pos(id, hpXPosBase + 8, hpYPosBase - 2);
         hud_element_draw_next(id);
 
-        x = statusBar->drawPosX + 48;
-        y = statusBar->drawPosY + 8;
+        //draw partner heart icon
+        id = statusBar->hpIconHIDs[1];
+        hud_element_set_render_pos(id, hpXPosBase + 8, hpYPosBase + 19);
+        hud_element_draw_next(id);
+
+        //draw player icon
+        id = statusBar->hpIconHIDs[0];
+        hud_element_set_render_pos(id, hpXPosBase, hpYPosBase);
+        hud_element_draw_next(id);
+
+        //draw player curHp / maxHp
+        x = statusBar->drawPosX + 42;
+        y = statusBar->drawPosY + 7;
         status_bar_draw_stat(statusBar->hpTimesHID, x, y, statusBar->displayHP, playerData->curMaxHP);
+
+        //draw partner curHp / maxHp
+        x = statusBar->drawPosX + 42;
+        y = statusBar->drawPosY + 28;
+        {
+            s32 curPartner = playerData->curPartner;
+            status_bar_draw_stat(statusBar->hpTimesHID, x, y, playerData->partners[curPartner].curHp, playerData->partners[curPartner].maxHp);
+        }
+        
+        
     }
 
     if (statusBar->fpBlinkTimer > 0) {
@@ -806,15 +877,23 @@ void update_status_bar(void) {
         y = statusBar->drawPosY + 13;
         hud_element_set_render_pos(id, x, y);
         hud_element_draw_next(id);
+        // id = statusBar->fpIconHIDs[0];
+        // x = statusBar->drawPosX + 110;
+        // y = statusBar->drawPosY + 13;
+        // hud_element_set_render_pos(id, x, y);
+        // hud_element_draw_next(id);
 
-        id = statusBar->fpIconHIDs[1];
-        x = statusBar->drawPosX + 125;
-        y = statusBar->drawPosY + 13;
-        hud_element_set_render_pos(id, x, y);
-        hud_element_draw_next(id);
+        // id = statusBar->fpIconHIDs[1];
+        // x = statusBar->drawPosX + 125;
+        // y = statusBar->drawPosY + 13;
+        // hud_element_set_render_pos(id, x, y);
+        // hud_element_draw_next(id);
 
-        x = statusBar->drawPosX + 136;
-        y = statusBar->drawPosY + 8;
+        // x = statusBar->drawPosX + 136;
+        // y = statusBar->drawPosY + 8;
+        // status_bar_draw_stat(statusBar->fpTimesHID, x, y, statusBar->displayFP, playerData->curMaxFP);
+        x = statusBar->drawPosX + 128;
+        y = statusBar->drawPosY + 7;
         status_bar_draw_stat(statusBar->fpTimesHID, x, y, statusBar->displayFP, playerData->curMaxFP);
     }
 
@@ -848,7 +927,7 @@ void update_status_bar(void) {
         hud_element_draw_next(id);
 
         x = statusBar->drawPosX + 200;
-        y = statusBar->drawPosY + 8;
+        y = statusBar->drawPosY + 7;
         status_bar_draw_number(statusBar->spTimesHID, x, y, playerData->starPoints, 2);
     }
 
@@ -885,7 +964,7 @@ void update_status_bar(void) {
         hud_element_draw_next(id);
 
         x = statusBar->drawPosX + 247;
-        y = statusBar->drawPosY + 8;
+        y = statusBar->drawPosY + 7;
         status_bar_draw_number(statusBar->coinTimesHID, x, y, statusBar->displayCoins, 3);
     }
 

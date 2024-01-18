@@ -1973,27 +1973,17 @@ HudScript HES_PartnerBDisabled = HES_TEMPLATE_CI_ENUM_SIZE(ui_partner11_disabled
 
 HudScript HES_StatusTimes = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_times, 8, 8);
 
-HudScript HES_StatusSlash = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_slash, 8, 16);
-
-HudScript HES_StatusDigit0 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_0, 16, 16);
-
-HudScript HES_StatusDigit1 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_1, 16, 16);
-
-HudScript HES_StatusDigit2 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_2, 16, 16);
-
-HudScript HES_StatusDigit3 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_3, 16, 16);
-
-HudScript HES_StatusDigit4 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_4, 16, 16);
-
-HudScript HES_StatusDigit5 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_5, 16, 16);
-
-HudScript HES_StatusDigit6 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_6, 16, 16);
-
-HudScript HES_StatusDigit7 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_7, 16, 16);
-
-HudScript HES_StatusDigit8 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_8, 16, 16);
-
-HudScript HES_StatusDigit9 = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_9, 16, 16);
+extern HudScript HES_StatusSlash;
+extern HudScript HES_StatusDigit0;
+extern HudScript HES_StatusDigit1;
+extern HudScript HES_StatusDigit2;
+extern HudScript HES_StatusDigit3;
+extern HudScript HES_StatusDigit4;
+extern HudScript HES_StatusDigit5;
+extern HudScript HES_StatusDigit6;
+extern HudScript HES_StatusDigit7;
+extern HudScript HES_StatusDigit8;
+extern HudScript HES_StatusDigit9;
 
 HudScript HES_StatusHP = HES_TEMPLATE_CI_ENUM_SIZE(ui_status_text_hp, 16, 16);
 
