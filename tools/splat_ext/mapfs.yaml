@@ -1030,7 +1030,8 @@
 - gv__tex
 - kmr_bg
 - nok_bg
-- sbk_bg
+- name: sbk_bg
+  pal_count: 2 # sbk_bg has an alternative palette
 - sbk3_bg
 - iwa_bg
 - hos_bg
@@ -1046,7 +1047,11 @@
 - sam_bg
 - kpa_bg
 - title_bg
-- title_data
+- name: title_data
+  textures:
+  - [0x10,   ia8,    copyright,   144, 32]
+  - [0x1210, ia8,    press_start, 128, 32]
+  - [0x2210, rgba32, logotype,    200, 112]
 - party_kurio
 - party_kameki
 - party_pinki
