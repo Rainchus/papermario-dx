@@ -47,6 +47,33 @@ extern HudScript HES_StatusStarEmpty;
 
 extern HudScript* SlashHudScript;
 
+// IconHudScriptPair gPartnerIconHudScripts[] = {
+//     { .enabled = &HES_Partner0, .disabled = &HES_Partner0Disabled },
+//     { .enabled = &HES_Goombario, .disabled = &HES_GoombarioDisabled },
+//     { .enabled = &HES_Kooper, .disabled = &HES_KooperDisabled },
+//     { .enabled = &HES_Bombette, .disabled = &HES_BombetteDisabled },
+//     { .enabled = &HES_Parakarry, .disabled = &HES_ParakarryDisabled },
+//     { .enabled = &HES_Bow, .disabled = &HES_BowDisabled },
+//     { .enabled = &HES_Watt, .disabled = &HES_WattDisabled },
+//     { .enabled = &HES_Sushie, .disabled = &HES_SushieDisabled },
+//     { .enabled = &HES_Lakilester, .disabled = &HES_LakilesterDisabled },
+//     { .enabled = &HES_Partner9, .disabled = &HES_Partner9Disabled },
+//     { .enabled = &HES_PartnerA, .disabled = &HES_PartnerADisabled },
+//     { .enabled = &HES_PartnerB, .disabled = &HES_PartnerBDisabled },
+//     { .enabled = &HES_PartnerB, .disabled = &HES_PartnerBDisabled },
+// };
+
+// HudScript CurPartnerHudScript = {
+//     hs_SetVisible
+//     hs_SetTileSize(HUD_ELEMENT_SIZE_32x32)
+//     hs_Loop
+//     HUD_ELEMENT_OP_SetCI, 60, fontDivisionSymbolRaster, fontPalette,
+//     hs_Restart
+//     hs_End
+// };
+
+extern IconHudScriptPair gPartnerIconHudScripts[];
+
 void status_bar_start_blinking_coins(void);
 void status_bar_stop_blinking_coins(void);
 
@@ -106,7 +133,14 @@ void clear_player_data(void) {
     playerData->curPartner = 0;
 
     for (i = 0; i < ARRAY_COUNT(playerData->partners); i++) {
-        playerData->partners[i].enabled = FALSE;
+        if (i == 5 || i == 10 || i == 11) { //skip goompa, goombaria, twink
+            continue;
+        }
+        #if GIVE_ALL_PARTNERS == 1
+            playerData->partners[i].enabled = TRUE;
+        #else
+            playerData->partners[i].enabled = FALSE;
+        #endif
         playerData->partners[i].level = PARTNER_RANK_NORMAL;
         playerData->partners[i].curHp = partnerHpList[i].level0Hp;
         playerData->partners[i].maxHp = partnerHpList[i].level0Hp;
@@ -331,16 +365,16 @@ void enforce_hpfp_limits(void) {
     PlayerData* playerData = &gPlayerData;
 
     playerData->curMaxHP = playerData->hardMaxHP + (is_ability_active(ABILITY_HP_PLUS) * 5);
-    if (playerData->curMaxHP > 75) {
-        playerData->curMaxHP = 75;
+    if (playerData->curMaxHP > 150) {
+        playerData->curMaxHP = 150;
     }
     if (playerData->curHP > playerData->curMaxHP) {
         playerData->curHP = playerData->curMaxHP;
     }
 
     playerData->curMaxFP = playerData->hardMaxFP + (is_ability_active(ABILITY_FP_PLUS) * 5);
-    if (playerData->curMaxFP > 75) {
-        playerData->curMaxFP = 75;
+    if (playerData->curMaxFP > 150) {
+        playerData->curMaxFP = 150;
     }
     if (playerData->curFP > playerData->curMaxFP) {
         playerData->curFP = playerData->curMaxFP;
@@ -836,6 +870,13 @@ void update_status_bar(void) {
         hud_element_set_render_pos(id, hpXPosBase, hpYPosBase);
         hud_element_draw_next(id);
 
+        //draw partner icon icon
+        id = statusBar->fpIconHIDs[1];
+        hud_element_set_script(id, gPartnerIconHudScripts[gPlayerData.curPartner].enabled);
+        hud_element_set_scale(id, 0.5f);
+        hud_element_set_render_pos(id, hpXPosBase - 1, hpYPosBase + 21);
+        hud_element_draw_next(id);
+
         //draw player curHp / maxHp
         x = statusBar->drawPosX + 42;
         y = statusBar->drawPosY + 7;
@@ -847,9 +888,7 @@ void update_status_bar(void) {
         {
             s32 curPartner = playerData->curPartner;
             status_bar_draw_stat(statusBar->hpTimesHID, x, y, playerData->partners[curPartner].curHp, playerData->partners[curPartner].maxHp);
-        }
-        
-        
+        } 
     }
 
     if (statusBar->fpBlinkTimer > 0) {

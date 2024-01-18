@@ -153,10 +153,9 @@ typedef struct DmaTable {
 typedef struct PartnerData {
     /* 0x00 */ u8 enabled;
     /* 0x01 */ s8 level;
-    /* 0x02 */ u8 curHp;
-    /* 0x03 */ u8 maxHp;
-    /* 0x04 */ u8 trueMaxHp;
-    /* 0x05 */ char unk_05[3];
+    /* 0x02 */ s16 curHp;
+    /* 0x04 */ s16 maxHp;
+    /* 0x06 */ s16 trueMaxHp;
 } PartnerData; // size = 0x08
 
 typedef struct HeapNode {
@@ -311,12 +310,12 @@ typedef Npc* NpcList[MAX_NPCS];
 typedef struct PlayerData {
     /* 0x000 */ s8 bootsLevel;
     /* 0x001 */ s8 hammerLevel;
-    /* 0x002 */ u8 curHP;
-    /* 0x003 */ u8 curMaxHP;
-    /* 0x004 */ u8 hardMaxHP;
-    /* 0x005 */ u8 curFP;
-    /* 0x006 */ u8 curMaxFP;
-    /* 0x007 */ u8 hardMaxFP;
+    /* 0x002 */ s16 curHP;
+    /* 0x003 */ s16 curMaxHP;
+    /* 0x004 */ s16 hardMaxHP;
+    /* 0x005 */ s16 curFP;
+    /* 0x006 */ s16 curMaxFP;
+    /* 0x007 */ s16 hardMaxFP;
     /* 0x008 */ u8 maxBP;
     /* 0x009 */ s8 level;
     /* 0x00A */ b8 hasActionCommands;
@@ -376,7 +375,7 @@ typedef struct PlayerData {
     /* 0x338 */ u32 smashGameTotal; /* all-time winnings, max = 99999 */
     /* 0x33C */ u16 smashGameRecord;
     /* 0x33E */ char pad_33E[2];
-    /* 0x340 */ char reserved[0xE8]; // unused
+    /* 0x340 */ char reserved[0xE2]; // unused
 } PlayerData; // size = 0x428
 
 typedef struct Trigger {
@@ -671,8 +670,8 @@ typedef struct StatusBar {
     /* 0x3A */ b8 hidden;
     /* 0x3B */ b8 unk_3B;
     /* 0x3C */ b8 unk_3C;
-    /* 0x3D */ s8 displayHP;
-    /* 0x3E */ s8 displayFP;
+    /* 0x3D */ s16 displayHP;
+    /* 0x3E */ s16 displayFP;
     /* 0x3F */ char unk_3F;
     /* 0x40 */ s16 displayCoins;
     /* 0x42 */ s16 displayStarpoints;
@@ -1882,9 +1881,9 @@ typedef struct Actor {
     /* 0x19B */ char unk_19B[1];
     /* 0x19C */ s32 actorTypeData1[6]; /* 4 = jump sound, 5 = attack sound */ // TODO: struct
     /* 0x1B4 */ s16 actorTypeData1b[2];
-    /* 0x1B8 */ u8 curHP;
-    /* 0x1B9 */ u8 maxHP;
-    /* 0x1BA */ char unk_1BA[2];
+    /* 0x1B8 */ s16 curHP;
+    /* 0x1BA */ s16 maxHP;
+    // /* 0x1BA */ char unk_1BA[2];
     /* 0x1BC */ s8 healthFraction; /* used to render HP bar */
     /* 0x1BD */ char unk_1BD[3];
     /* 0x1C0 */ EvtScript* idleSource;

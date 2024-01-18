@@ -154,7 +154,7 @@ HitResult calc_enemy_test_target(Actor* actor) {
             target->curHP = playerData->curHP;
             break;
         case ACTOR_CLASS_PARTNER:
-            target->curHP = 127;
+            target->curHP = playerData->partners[playerData->curPartner].curHp;
             break;
         case ACTOR_CLASS_ENEMY:
             break;
@@ -276,7 +276,7 @@ HitResult calc_enemy_damage_target(Actor* attacker) {
             target->curHP = gPlayerData.curHP;
             break;
         case ACTOR_CLASS_PARTNER:
-            target->curHP = 127;
+            target->curHP = gPlayerData.partners[gPlayerData.curPartner].curHp;
             break;
         case ACTOR_CLASS_ENEMY:
             break;
@@ -381,7 +381,8 @@ HitResult calc_enemy_damage_target(Actor* attacker) {
         case ACTOR_CLASS_PLAYER:
             damage -= battleStatus->merleeDefenseBoost;
             break;
-        case ACTOR_CLASS_PARTNER:
+        case ACTOR_CLASS_PARTNER: //merlee defense boost affects both
+            damage -= battleStatus->merleeDefenseBoost;
         case ACTOR_CLASS_ENEMY:
             break;
     }
@@ -461,7 +462,7 @@ HitResult calc_enemy_damage_target(Actor* attacker) {
             if (target->stoneStatus == 0) {
                 if (target->koStatus == 0 && !(battleStatus->curAttackElement & DAMAGE_TYPE_UNBLOCKABLE)) {
                     if (check_block_input(BUTTON_A)) {
-                        damage = 0;
+                        damage--;
                         sfx_play_sound_at_position(SOUND_DAMAGE_STARS, SOUND_SPACE_DEFAULT, state->goalPos.x, state->goalPos.y, state->goalPos.z);
                         show_action_rating(ACTION_RATING_NICE, target, state->goalPos.x, state->goalPos.y, state->goalPos.z);
                         gBattleStatus.flags1 |= BS_FLAGS1_ATK_BLOCKED;
@@ -686,7 +687,12 @@ HitResult calc_enemy_damage_target(Actor* attacker) {
         && gBattleStatus.flags1 & BS_FLAGS1_TRIGGER_EVENTS
         && !(target->flags & ACTOR_FLAG_NO_DMG_APPLY))
     {
-        inflict_partner_ko(target, STATUS_KEY_DAZE, battleStatus->lastAttackDamage);
+        gPlayerData.partners[gPlayerData.curPartner].curHp -= battleStatus->lastAttackDamage;
+        if (gPlayerData.partners[gPlayerData.curPartner].curHp > 100) { //hp underflowed, set to 0
+            gPlayerData.partners[gPlayerData.curPartner].curHp = 0;
+            inflict_partner_ko(target, STATUS_KEY_DAZE, battleStatus->lastAttackDamage);
+        }
+        //inflict_partner_ko(target, STATUS_KEY_DAZE, battleStatus->lastAttackDamage); //subtract partner hp here?
     }
 
     if (!(target->flags & ACTOR_FLAG_NO_DMG_POPUP)) {
@@ -2644,7 +2650,7 @@ ApiStatus GetActorHP(Evt* script, s32 isInitialCall) {
             outVal = playerData->curHP;
             break;
         case ACTOR_CLASS_PARTNER:
-            outVal = 99;
+            outVal = playerData->partners[playerData->curPartner].curHp;
             break;
         default:
             outVal = actor->curHP;

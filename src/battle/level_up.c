@@ -37,16 +37,18 @@ enum {
 // second index for LevelUpStatTextIDs
 enum {
     LVL_UP_TITLE        = 0,
-    LVL_UP_CUR_TENS     = 1,
-    LVL_UP_CUR_ONES     = 2,
-    LVL_UP_ARROW        = 3,
-    LVL_UP_NEXT_TENS    = 4,
-    LVL_UP_NEXT_ONES    = 5,
-    LVL_UP_BONUS        = 6,
+    LVL_UP_CUR_HUND     = 1,
+    LVL_UP_CUR_TENS     = 2,
+    LVL_UP_CUR_ONES     = 3,
+    LVL_UP_ARROW        = 4,
+    LVL_UP_NEXT_HUND    = 5,
+    LVL_UP_NEXT_TENS    = 6,
+    LVL_UP_NEXT_ONES    = 7,
+    LVL_UP_BONUS        = 8,
 };
 
 BSS HudElemID LevelUpStatEmblemIDs[4];
-BSS HudElemID LevelUpStatTextIDs[3][7];
+BSS HudElemID LevelUpStatTextIDs[3][9];
 BSS s32 D_8029FAE4; // unused?
 BSS HudElemID LevelUpSpotlightID;
 BSS s32 D_8029FAEC[23]; // unused?
@@ -487,6 +489,7 @@ void btl_state_update_celebration(void) {
     Evt* takeTurnScript;
     Evt* script;
 
+    s32 hundredsDigit;
     s32 tensDigit;
     s32 onesDigit;
 
@@ -710,10 +713,19 @@ void btl_state_update_celebration(void) {
                 CantLevelUpStat[MENU_FP] = FALSE;
                 CantLevelUpStat[MENU_BP] = FALSE;
 
-                if (playerData->hardMaxFP != 50) {
+                if (playerData->hardMaxFP != 150) {
                     // current FP
-                    tensDigit = playerData->curMaxFP / 10;
+
                     onesDigit = playerData->curMaxFP % 10;
+                    tensDigit = (playerData->curMaxFP / 10) % 10;
+                    hundredsDigit = playerData->curMaxFP / 100;
+
+                    id = LevelUpStatTextIDs[LVL_UP_FP][LVL_UP_CUR_HUND];
+                    hud_element_set_script(id, level_up_small_digit_scripts[LVL_UP_FP][hundredsDigit]);
+                    if (hundredsDigit != 0) {
+                        hud_element_clear_flags(id, HUD_ELEMENT_FLAG_DISABLED);
+                    }
+
                     id = LevelUpStatTextIDs[LVL_UP_FP][LVL_UP_CUR_TENS];
                     hud_element_set_script(id, level_up_small_digit_scripts[LVL_UP_FP][tensDigit]);
                     if (tensDigit != 0) {
@@ -734,9 +746,21 @@ void btl_state_update_celebration(void) {
                     hud_element_get_render_pos(id, &x, &y);
                     hud_element_set_render_pos(id, x - 3, y + 46);
 
-                    // upgraded FP
-                    tensDigit = (playerData->curMaxFP + 5) / 10;
+
                     onesDigit = (playerData->curMaxFP + 5) % 10;
+                    tensDigit = ((playerData->curMaxFP + 5) / 10) % 10;
+                    hundredsDigit = (playerData->curMaxFP + 5) / 100;
+
+                    // upgraded FP
+                    // tensDigit = (playerData->curMaxFP + 5) / 10;
+                    // onesDigit = (playerData->curMaxFP + 5) % 10;
+
+                    id = LevelUpStatTextIDs[LVL_UP_FP][LVL_UP_NEXT_HUND];
+                    hud_element_set_script(id, HES_LevelUpDigits[LVL_UP_FP][hundredsDigit]);
+                    if (hundredsDigit != 0) {
+                        hud_element_clear_flags(id, HUD_ELEMENT_FLAG_DISABLED);
+                    }
+
                     id = LevelUpStatTextIDs[LVL_UP_FP][LVL_UP_NEXT_TENS];
                     hud_element_set_script(id, HES_LevelUpDigits[LVL_UP_FP][tensDigit]);
                     if (tensDigit != 0) {
@@ -745,7 +769,21 @@ void btl_state_update_celebration(void) {
                     hud_element_get_render_pos(id, &x, &y);
                     hud_element_set_render_pos(id, x + 3, y + 46);
 
-                    id = LevelUpStatTextIDs[LVL_UP_FP][LVL_UP_NEXT_ONES];
+                    onesDigit = (playerData->curMaxFP + 5) % 10;
+                    tensDigit = ((playerData->curMaxFP + 5) / 10) % 10;
+                    hundredsDigit = (playerData->curMaxFP + 5) / 100;
+
+                    // upgraded FP
+                    // tensDigit = (playerData->curMaxFP + 5) / 10;
+                    // onesDigit = (playerData->curMaxFP + 5) % 10;
+
+                    id = LevelUpStatTextIDs[LVL_UP_FP][LVL_UP_NEXT_HUND];
+                    hud_element_set_script(id, HES_LevelUpDigits[LVL_UP_FP][hundredsDigit]);
+                    if (hundredsDigit != 0) {
+                        hud_element_clear_flags(id, HUD_ELEMENT_FLAG_DISABLED);
+                    }
+
+                    id = LevelUpStatTextIDs[LVL_UP_FP][LVL_UP_NEXT_TENS];
                     hud_element_set_script(id, HES_LevelUpDigits[LVL_UP_FP][onesDigit]);
                     hud_element_clear_flags(id, HUD_ELEMENT_FLAG_DISABLED);
                     hud_element_get_render_pos(id, &x, &y);
