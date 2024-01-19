@@ -2961,6 +2961,10 @@ enum PartnerStates {
 /// @see gAreas
 enum Areas {
     AREA_KMR,
+    AREA_DON,
+    AREA_ASH,
+    AREA_GAR,
+    AREA_ABV,
     AREA_MAC,
     AREA_TIK,
     AREA_KGR,

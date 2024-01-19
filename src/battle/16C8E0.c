@@ -868,8 +868,10 @@ void btl_draw_enemy_health_bars(void) {
 
             if (enemy != NULL) {
                 s32 currentHP;
-                s32 temp;
+                s32 hundreds;
+                s32 tens;
                 s32 ones;
+                s32 temp;
 
                 currentHP = enemy->curHP;
                 temp = (currentHP * 25) / enemy->maxHP;
@@ -908,14 +910,25 @@ void btl_draw_enemy_health_bars(void) {
                         hud_element_set_render_pos(id, screenX, screenY);
                         hud_element_draw_clipped(id);
 
-                        temp = currentHP / 10;
                         ones = currentHP % 10;
+                        tens = (currentHP / 10) % 10;
+                        hundreds = currentHP / 100;
 
-                        // tens digit
-                        if (temp > 0) {
+                        // hundreds digit
+                        if (hundreds > 0) {
                             id = D_8029EFBC;
                             hud_element_set_render_depth(id, 10);
-                            hud_element_set_script(id, bHPDigitHudScripts[temp]);
+                            hud_element_set_script(id, bHPDigitHudScripts[hundreds]);
+                            btl_draw_prim_quad(0, 0, 0, 0, screenX, screenY + 2, 8, 8);
+                            hud_element_set_render_pos(id, screenX + 4, screenY + 6);
+                            hud_element_draw_next(id);
+                        }
+
+                        // tens digit
+                        if (tens > 0) {
+                            id = D_8029EFBC;
+                            hud_element_set_render_depth(id, 10);
+                            hud_element_set_script(id, bHPDigitHudScripts[tens]);
                             btl_draw_prim_quad(0, 0, 0, 0, screenX, screenY + 2, 8, 8);
                             hud_element_set_render_pos(id, screenX + 4, screenY + 6);
                             hud_element_draw_next(id);

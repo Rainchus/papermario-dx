@@ -310,13 +310,13 @@ typedef Npc* NpcList[MAX_NPCS];
 typedef struct PlayerData {
     /* 0x000 */ s8 bootsLevel;
     /* 0x001 */ s8 hammerLevel;
-    /* 0x002 */ s16 curHP;
-    /* 0x003 */ s16 curMaxHP;
-    /* 0x004 */ s16 hardMaxHP;
-    /* 0x005 */ s16 curFP;
-    /* 0x006 */ s16 curMaxFP;
-    /* 0x007 */ s16 hardMaxFP;
-    /* 0x008 */ u8 maxBP;
+    /* 0x002 */ s8 curHP;
+    /* 0x003 */ s8 curMaxHP;
+    /* 0x004 */ s8 hardMaxHP;
+    /* 0x005 */ s8 curFP;
+    /* 0x006 */ s8 curMaxFP;
+    /* 0x007 */ s8 hardMaxFP;
+    /* 0x008 */ s8 maxBP;
     /* 0x009 */ s8 level;
     /* 0x00A */ b8 hasActionCommands;
     /* 0x00B */ char pad_00B;
@@ -375,7 +375,7 @@ typedef struct PlayerData {
     /* 0x338 */ u32 smashGameTotal; /* all-time winnings, max = 99999 */
     /* 0x33C */ u16 smashGameRecord;
     /* 0x33E */ char pad_33E[2];
-    /* 0x340 */ char reserved[0xE2]; // unused
+    /* 0x340 */ char reserved[0xE8]; // unused
 } PlayerData; // size = 0x428
 
 typedef struct Trigger {
@@ -670,8 +670,8 @@ typedef struct StatusBar {
     /* 0x3A */ b8 hidden;
     /* 0x3B */ b8 unk_3B;
     /* 0x3C */ b8 unk_3C;
-    /* 0x3D */ s16 displayHP;
-    /* 0x3E */ s16 displayFP;
+    /* 0x3D */ s8 displayHP;
+    /* 0x3E */ s8 displayFP;
     /* 0x3F */ char unk_3F;
     /* 0x40 */ s16 displayCoins;
     /* 0x42 */ s16 displayStarpoints;
