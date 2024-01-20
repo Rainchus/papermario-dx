@@ -15,7 +15,7 @@
 #define DX_SKIP_FILE_SELECT 0
 
 /// Map to load when starting a new game.
-#define NEW_GAME_MAP_ID "don_01"
+#define NEW_GAME_MAP_ID "nok_11"
 
 /// Entry to use when starting a new game.
 #define NEW_GAME_ENTRY_ID 0
@@ -28,5 +28,9 @@
 #define USE_PROFILER 1
 
 #define GIVE_ALL_PARTNERS 1 //except goompa(5), goombaria(10), and twink(11)
+
+#define GIVE_PLAYER_STARTING_EQUIPMENT 1
+
+#define FASTER_HEALING_TICK_UP 1
 
 #endif

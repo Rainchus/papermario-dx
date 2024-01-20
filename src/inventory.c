@@ -132,6 +132,35 @@ void clear_player_data(void) {
     playerData->starBeamLevel = 0;
     playerData->curPartner = 0;
 
+    #if GIVE_PLAYER_STARTING_EQUIPMENT == 1
+        playerData->bootsLevel = 2;
+        playerData->hammerLevel = 2;
+        playerData->curHP = 50;
+        playerData->curMaxHP = 50;
+        playerData->hardMaxHP = 50;
+        playerData->curFP = 50;
+        playerData->curMaxFP = 50;
+        playerData->hardMaxFP = 50;
+        playerData->maxBP = 30;
+        playerData->level = 1;
+        playerData->hasActionCommands = TRUE;
+        playerData->coins = 999;
+        playerData->fortressKeyCount = 0;
+        playerData->starPieces = 0;
+        playerData->starPoints = 99;
+        playerData->unused_011 = 0;
+        playerData->unused_288 = 0;
+        playerData->merleeSpellType = MERLEE_SPELL_NONE;
+        playerData->merleeCastsLeft = 0;
+        playerData->merleeTurnCount = -1;
+        playerData->maxStarPower = 0;
+        playerData->starPower = 0;
+        playerData->starBeamLevel = 0;
+        playerData->curPartner = 0;
+        playerData->equippedBadges[0] = ITEM_POWER_PLUS_A;
+        playerData->equippedBadges[1] = ITEM_POWER_PLUS_B;
+    #endif
+
     for (i = 0; i < ARRAY_COUNT(playerData->partners); i++) {
         if (i == 5 || i == 10 || i == 11) { //skip goompa, goombaria, twink
             continue;
@@ -710,14 +739,18 @@ void update_status_bar(void) {
         }
         if (statusBar->displayHP < playerData->curHP) {
             if (statusBar->drawPosY >= FULLY_EXTENDED_Y) {
-                if (gGameStatusPtr->frameCounter % 4 == 0) {
-                    statusBar->displayHP++;
+                if (gGameStatusPtr->frameCounter % 2 == 0) {
+                    if ((playerData->curHP - statusBar->displayHP) > 5) {
+                        statusBar->displayHP += 5;
+                    } else {
+                        statusBar->displayHP++;
+                    }
                     sfx_play_sound(SOUND_HEART_PICKUP);
                 }
-            } else if (gGameStatusPtr->frameCounter % 4 == 0) {
+            } else if (gGameStatusPtr->frameCounter % 2 == 0) {
                 statusBar->displayHP++;
             }
-        } else if (gGameStatusPtr->frameCounter % 4 == 0) {
+        } else if (gGameStatusPtr->frameCounter % 2 == 0) {
             statusBar->displayHP--;
         }
     }
@@ -729,14 +762,18 @@ void update_status_bar(void) {
         }
         if (statusBar->displayFP < playerData->curFP) {
             if (statusBar->drawPosY >= FULLY_EXTENDED_Y) {
-                if (gGameStatusPtr->frameCounter % 4 == 0) {
-                    statusBar->displayFP++;
+                if (gGameStatusPtr->frameCounter % 2 == 0) {
+                    if ((playerData->curFP - statusBar->displayFP) > 5) {
+                        statusBar->displayFP += 5;
+                    } else {
+                        statusBar->displayFP++;
+                    }
                     sfx_play_sound(SOUND_FLOWER_PICKUP);
                 }
-            } else if (gGameStatusPtr->frameCounter % 4 == 0) {
+            } else if (gGameStatusPtr->frameCounter % 2 == 0) {
                 statusBar->displayFP++;
             }
-        } else if (gGameStatusPtr->frameCounter % 4 == 0) {
+        } else if (gGameStatusPtr->frameCounter % 2 == 0) {
             statusBar->displayFP--;
         }
     }
