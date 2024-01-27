@@ -162,9 +162,6 @@ void clear_player_data(void) {
     #endif
 
     for (i = 0; i < ARRAY_COUNT(playerData->partners); i++) {
-        if (i == 5 || i == 10 || i == 11) { //skip goompa, goombaria, twink
-            continue;
-        }
         #if GIVE_ALL_PARTNERS == 1
             playerData->partners[i].enabled = TRUE;
         #else
@@ -175,6 +172,8 @@ void clear_player_data(void) {
         playerData->partners[i].maxHp = partnerHpList[i].level0Hp;
         playerData->partners[i].trueMaxHp = partnerHpList[i].level0Hp;
     }
+
+    playerData->curPartner = 1;
 
     for (i = 0; i < ARRAY_COUNT(playerData->keyItems); i++) {
         playerData->keyItems[i] = ITEM_NONE;

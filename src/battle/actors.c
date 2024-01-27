@@ -75,7 +75,7 @@ u32 bMarioIdleAnims[] = {
 
 s32 bMarioDefendAnims[] = {
     STATUS_KEY_NORMAL,            ANIM_Mario1_Crouch,
-    STATUS_KEY_DANGER,            ANIM_Mario1_TiredIdle,
+    STATUS_END,                   ANIM_Mario1_TiredIdle,
     STATUS_KEY_STONE,             ANIM_MarioB3_Petrified,
     STATUS_KEY_SLEEP,             ANIM_MarioB1_Sleep,
     STATUS_KEY_DIZZY,             ANIM_MarioB1_Sick,

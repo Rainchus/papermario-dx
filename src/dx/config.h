@@ -21,7 +21,7 @@
 #define NEW_GAME_ENTRY_ID 0
 
 /// Story progress when starting a new game.
-#define NEW_GAME_STORY_PROGRESS STORY_INTRO
+#define NEW_GAME_STORY_PROGRESS 0x90
 
 /// Enables the profiler, which shows lots of performance info on screen.
 /// Press L + D-Pad Up to show/hide the profiler.

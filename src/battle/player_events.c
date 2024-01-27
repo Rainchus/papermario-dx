@@ -1012,7 +1012,7 @@ EvtScript EVS_Player_HandleEvent = {
         EVT_CASE_OR_EQ(EVENT_ZERO_DAMAGE)
         EVT_CASE_OR_EQ(EVENT_IMMUNE)
             EVT_CALL(PlaySoundAtActor, ACTOR_PLAYER, SOUND_NO_DAMGE)
-            EVT_SET_CONST(LVar1, ANIM_Mario1_Idle)
+            EVT_SET_CONST(LVar1, ANIM_Mario1_Crouch)
             EVT_EXEC_WAIT(EVS_Player_NoDamageHit)
         EVT_END_CASE_GROUP
         EVT_CASE_OR_EQ(EVENT_18)
