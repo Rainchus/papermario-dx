@@ -159,6 +159,7 @@ EvtScript N(EVS_SetupFearReaction) = {
 };
 
 EvtScript N(EVS_Transform) = {
+    Call(SetAttackTimeScale)
     Call(PlaySoundAtActor, ACTOR_SELF, SOUND_JR_TROOPA_TRANSFORM)
     Call(GetActorPos, ACTOR_SELF, LVar0, LVar1, LVar2)
     Call(GetStatusFlags, ACTOR_SELF, LVar3)
@@ -426,6 +427,7 @@ EvtScript N(EVS_TryHitReaction) = {
 };
 
 EvtScript N(EVS_Overshoot_Unused) = {
+    Call(SetAttackTimeScale)
     Call(GetGoalPos, ACTOR_SELF, LVar0, LVar1, LVar2)
     Add(LVar0, 40)
     Set(LVar1, 0)
@@ -453,6 +455,7 @@ EvtScript N(EVS_Overshoot_Unused) = {
 };
 
 EvtScript N(EVS_TakeTurn) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(EnableIdleScript, ACTOR_SELF, IDLE_SCRIPT_DISABLE)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
@@ -703,6 +706,7 @@ EvtScript N(EVS_JrTroopa_Death) = {
 };
 
 EvtScript N(EVS_JrTroopa_FlyHome) = {
+    Call(SetAttackTimeScale)
     Call(ResetAllActorSounds, ACTOR_SELF)
     Call(SetAnimation, ACTOR_SELF, PRT_GROUND, ANIM_SpikedParaJrTroopa_FlyFast)
     Call(SetActorSpeed, ACTOR_SELF, Float(6.0))

@@ -802,6 +802,7 @@ EvtScript N(EVS_HandleEvent) = {
 };
 
 EvtScript N(EVS_TakeTurn) = {
+    Call(SetAttackTimeScale)
     Call(GetActorHP, ACTOR_SELF, LVar0)
     IfLe(LVar0, 20)
         Call(GetActorVar, ACTOR_KING, AVAR_Flags, LVar0)
@@ -1224,6 +1225,7 @@ Formation N(CloneFormation) = {
 };
 
 EvtScript N(EVS_Move_MakeClones) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(UseBattleCamPreset, BTL_CAM_PRESET_14)
     Call(BattleCamTargetActor, ACTOR_SELF)
@@ -1484,6 +1486,7 @@ EvtScript N(EVS_SummonBit) = {
 };
 
 EvtScript N(EVS_Move_SummonBits) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(EnableIdleScript, ACTOR_SELF, IDLE_SCRIPT_DISABLE)
     Call(UseBattleCamPreset, BTL_CAM_PRESET_14)
@@ -1976,6 +1979,7 @@ EvtScript N(EVS_Attack_SpitBits) = {
 };
 
 EvtScript N(EVS_Move_Recover) = {
+    Call(SetAttackTimeScale)
     Set(LFlag0, FALSE)
     Call(GetActorVar, ACTOR_SELF, AVAR_NextMove, LVar0)
     Switch(LVar0)

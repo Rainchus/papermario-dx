@@ -308,6 +308,7 @@ EvtScript N(EVS_CalculateJumpTime) = {
 };
 
 EvtScript N(EVS_Attack_Headbonk) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(EnableIdleScript, ACTOR_SELF, IDLE_SCRIPT_DISABLE)
     ExecWait(N(EVS_ApproachPlayer))
@@ -520,6 +521,7 @@ API_CALLABLE(N(CloseTattleWindow)) {
 }
 
 EvtScript N(EVS_Move_Tattle) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(EnableIdleScript, ACTOR_SELF, IDLE_SCRIPT_DISABLE)
     Call(SetActorJumpGravity, ACTOR_SELF, Float(1.8))

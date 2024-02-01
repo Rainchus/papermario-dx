@@ -806,6 +806,7 @@ API_CALLABLE(N(SetPetitFlameSize)) {
 }
 
 EvtScript N(EVS_Attack_SpitPetit) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Thread
         Wait(8)

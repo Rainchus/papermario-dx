@@ -210,6 +210,7 @@ EvtScript N(EVS_JrTroopa_Death) = {
 };
 
 EvtScript N(EVS_ReenterEgg) = {
+    Call(SetAttackTimeScale)
     Wait(10)
     Call(PlaySoundAtActor, ACTOR_SELF, SOUND_CLOSE_SHELL)
     Call(GetActorPos, ACTOR_SELF, LVar0, LVar1, LVar2)
@@ -389,6 +390,7 @@ EvtScript N(EVS_TryHitReaction) = {
 };
 
 EvtScript N(EVS_TakeTurn) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(EnableIdleScript, ACTOR_SELF, IDLE_SCRIPT_DISABLE)
     Call(PlaySoundAtActor, ACTOR_SELF, SOUND_OPEN_SHELL)

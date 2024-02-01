@@ -961,6 +961,7 @@ EvtScript N(EVS_Move_HealAll) = {
 };
 
 EvtScript N(EVS_Attack_MagicBlast) = {
+    Call(SetAttackTimeScale)
     Call(SetActorVar, ACTOR_SELF, AVAR_LastMove, AVAL_LastMove_MagicBlast)
     Set(LFlag0, FALSE)
     Set(LFlag1, FALSE)
@@ -1953,6 +1954,7 @@ EvtScript N(EVS_Move_TryTransparent) = {
 };
 
 EvtScript N(EVS_TakeTurn) = {
+    Call(SetAttackTimeScale)
     #define LBL_LOOP_COUNT_INJURED_1    0
     #define LBL_LOOP_COUNT_INJURED_2    1
     #define LBL_LOOP_COUNT_INJURED_3    2

@@ -365,6 +365,7 @@ EvtScript N(EVS_Move_Flee) = {
 };
 
 EvtScript N(EVS_TakeTurn) = {
+    Call(SetAttackTimeScale)
     Call(GetBattlePhase, LVar0)
     IfEq(LVar0, PHASE_FIRST_STRIKE)
         ExecWait(N(EVS_Attack_Sing))

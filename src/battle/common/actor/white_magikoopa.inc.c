@@ -572,6 +572,7 @@ EvtScript N(EVS_HandleEvent_Flying) = {
 };
 
 EvtScript N(EVS_Attack_MagicBlast) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(EnableIdleScript, ACTOR_SELF, IDLE_SCRIPT_DISABLE)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
@@ -665,6 +666,7 @@ EvtScript N(EVS_Attack_MagicBlast) = {
 };
 
 EvtScript N(EVS_Attack_WandStrike) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(EnableIdleScript, ACTOR_SELF, IDLE_SCRIPT_DISABLE)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
@@ -1058,6 +1060,7 @@ EvtScript N(EVS_Move_HealOne) = {
 };
 
 EvtScript N(EVS_Move_HealAll) = {
+    Call(SetAttackTimeScale)
     Call(RandInt, 1000, LVar0)
     IfGt(LVar0, 750)
         Call(GetActorFlags, ACTOR_SELF, LVar0)
@@ -1163,6 +1166,7 @@ EvtScript N(EVS_Move_HealAll) = {
 };
 
 EvtScript N(EVS_TakeTurn) = {
+    Call(SetAttackTimeScale)
     Call(CountTargets, ACTOR_SELF, TARGET_FLAG_2 | TARGET_FLAG_PRIMARY_ONLY, LVar0)
     IfEq(LVar0, 1)
         ExecWait(N(EVS_Flee))

@@ -991,6 +991,7 @@ EvtScript N(EVS_Move_HealAll) = {
 };
 
 EvtScript N(EVS_Attack_MagicBlast) = {
+    Call(SetAttackTimeScale)
     Call(SetActorVar, ACTOR_SELF, AVAR_LastMove, AVAL_LastMove_MagicBlast)
     Set(LFlag0, FALSE)
     Set(LFlag1, FALSE)
@@ -1429,6 +1430,7 @@ Formation N(FlyingCloneFormation) = {
 };
 
 EvtScript N(EVS_Move_MakeClone) = {
+    Call(SetAttackTimeScale)
     Call(CountTargets, ACTOR_SELF, TARGET_FLAG_2 | TARGET_FLAG_PRIMARY_ONLY, LVar0)
     IfEq(LVar0, 1)
         ExecWait(N(EVS_Flee))
@@ -1526,6 +1528,7 @@ EvtScript N(EVS_Move_MakeClone) = {
 #include "common/battle/CheckMagikoopaCastTarget.inc.c"
 
 EvtScript N(EVS_Move_TryBoostAttack) = {
+    Call(SetAttackTimeScale)
     Set(LFlag0, FALSE)
     Label(10)
         Call(CreateHomeTargetList, TARGET_FLAG_2 | TARGET_FLAG_PRIMARY_ONLY)
@@ -1639,6 +1642,7 @@ EvtScript N(EVS_Move_TryBoostAttack) = {
 };
 
 EvtScript N(EVS_Move_TryBoostDefense) = {
+    Call(SetAttackTimeScale)
     Set(LFlag0, FALSE)
     Label(10)
         Call(CreateHomeTargetList, TARGET_FLAG_2 | TARGET_FLAG_PRIMARY_ONLY)
@@ -1752,6 +1756,7 @@ EvtScript N(EVS_Move_TryBoostDefense) = {
 };
 
 EvtScript N(EVS_Move_TryElectrify) = {
+    Call(SetAttackTimeScale)
     Set(LFlag0, FALSE)
     Label(10)
         Call(CreateHomeTargetList, TARGET_FLAG_2 | TARGET_FLAG_PRIMARY_ONLY)
@@ -1870,6 +1875,7 @@ EvtScript N(EVS_Move_TryElectrify) = {
 };
 
 EvtScript N(EVS_Move_TryTransparent) = {
+    Call(SetAttackTimeScale)
     Set(LFlag0, FALSE)
     Label(10)
         Call(CreateHomeTargetList, TARGET_FLAG_2 | TARGET_FLAG_PRIMARY_ONLY)

@@ -129,6 +129,8 @@ extern PlayerStatus gPlayerStatus;
 extern PlayerSpinState gPlayerSpinState;
 extern PlayerData gPlayerData;
 
+extern f32 gEnemyAttackTimescale; //patch
+
 #if VERSION_PAL
 extern s32 gCurrentLanguage;
 #else

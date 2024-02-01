@@ -528,6 +528,7 @@ EvtScript N(EVS_CountActiveSummoners) = {
 };
 
 EvtScript N(EVS_TakeTurn) = {
+    Call(SetAttackTimeScale)
     Call(GetActorVar, ACTOR_SELF, AVAR_Generation, LVar0)
     IfEq(LVar0, 2)
         Call(RandInt, 100, LVar0)

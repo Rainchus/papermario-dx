@@ -593,6 +593,7 @@ EvtScript N(EVS_TakeTurn) = {
 };
 
 EvtScript N(EVS_Attack_ThrowShell) = {
+    Call(SetAttackTimeScale)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
     Call(GetActorVar, ACTOR_SELF, AVAR_ShellsLeft, LVar0)
     // get actor part for the Nth remaining shell
@@ -696,6 +697,7 @@ EvtScript N(EVS_Attack_ThrowShell) = {
 };
 
 EvtScript N(EVS_Attack_DropDebris) = {
+    Call(SetAttackTimeScale)
     Call(UseBattleCamPreset, BTL_CAM_PRESET_15)
     Call(SetBattleCamZoom, 350)
     Call(SetBattleCamOffsetZ, 0)
@@ -958,6 +960,7 @@ Formation N(SummonedChomp) = {
 };
 
 EvtScript N(EVS_Move_SummonChomp) = {
+    Call(SetAttackTimeScale)
     Call(GetStatusFlags, ACTOR_SELF, LVar0)
     Call(GetActorVar, ACTOR_SELF, AVAR_HasSummoned, LVar0)
     IfFalse(LVar0)

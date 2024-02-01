@@ -477,6 +477,9 @@ void btl_update(void) {
     }
 }
 
+s32 boxWidth = 42;
+s32 boxHeight = 16;
+
 void btl_draw_ui(void) {
     s32 changed = FALSE;
     s32 state;
@@ -610,6 +613,60 @@ void btl_draw_ui(void) {
                 break;
         }
     }
+    //patch start
+    {
+        s32 xPosTimeScale = 265;
+        s32 yPosTimeScale = 204;
+        s32 adjustableWidth = boxWidth;
+
+        char buffer[20];
+        s32 i;
+        if (gGameStatus.curButtons[0] & R_TRIG) {
+            switch (gGameStatus.pressedButtons[0]) {
+            case U_JPAD:
+                gEnemyAttackTimescale += 1.0f;
+                break;
+            case D_JPAD:
+                gEnemyAttackTimescale -= 1.0f;
+                break;
+            }            
+        } else {
+            switch (gGameStatus.pressedButtons[0]) {
+            case U_JPAD:
+                gEnemyAttackTimescale += 0.01f;
+                break;
+            case D_JPAD:
+                gEnemyAttackTimescale -= 0.01f;
+                break;
+            case L_JPAD:
+                gEnemyAttackTimescale -= 0.10f;
+                break;
+            case R_JPAD:
+                gEnemyAttackTimescale += 0.10f;
+                break;
+            }
+        }
+        sprintf(buffer, "%03d%%", (s32) (gEnemyAttackTimescale * 100));
+        for (i = 0; i < sizeof(buffer); i++) {
+            if (buffer[i] == 0) {
+                buffer[i] = 0xFD; //terminate string
+            } else if (buffer[i] == '.') {
+                buffer[i] = 0x0E;
+            } else if (buffer[i] == '%') {
+                buffer[i] = 0x05;
+            } else {
+                buffer[i] -= 0x20; //value ascii to pm64 value string
+            }
+        }
+
+        if (gEnemyAttackTimescale >= 10.0f) {
+            adjustableWidth += 6; //increase width for extra digit
+        }
+        draw_box(0, (WindowStyle)WINDOW_STYLE_4, xPosTimeScale - 6, yPosTimeScale, 0, adjustableWidth, boxHeight, 255, 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, NULL, NULL,
+                    NULL, SCREEN_WIDTH, SCREEN_HEIGHT, NULL);
+        draw_msg((s32)buffer, xPosTimeScale, yPosTimeScale, 255, 0, 0);
+    }
+    //patch end
     btl_popup_messages_draw_ui();
     draw_status_ui();
 }

@@ -369,6 +369,7 @@ EvtScript N(EVS_ShakeTank) = {
 };
 
 EvtScript N(EVS_ManageTroopWaves) = {
+    Call(SetAttackTimeScale)
     #define LBL_SQUAD_PHASE 0
     #define LBL_PHASE_STILT 1
     #define LBL_PHASE_STACK 2
@@ -491,6 +492,7 @@ EvtScript N(EVS_IncrementWavesDefeated) = {
 };
 
 EvtScript N(EVS_BeginWave_StiltGuys) = {
+    Call(SetAttackTimeScale)
     Call(EnableBattleStatusBar, FALSE)
     Call(UseBattleCamPreset, BTL_CAM_DEFAULT)
     Call(MoveBattleCamOver, 30)
@@ -537,6 +539,7 @@ EvtScript N(EVS_BeginWave_StiltGuys) = {
 };
 
 EvtScript N(EVS_BeginWave_ShyStacks) = {
+    Call(SetAttackTimeScale)
     Call(EnableBattleStatusBar, FALSE)
     Call(UseBattleCamPreset, BTL_CAM_PRESET_14)
     Call(BattleCamTargetActor, ACTOR_GENERAL)
@@ -611,6 +614,7 @@ EvtScript N(EVS_BeginWave_ShyStacks) = {
 };
 
 EvtScript N(EVS_SummonStiltGuys) = {
+    Call(SetAttackTimeScale)
     Call(UseBattleCamPreset, BTL_CAM_PRESET_14)
     Call(BattleCamTargetActor, ACTOR_GENERAL)
     Call(MoveBattleCamOver, 40)
@@ -664,6 +668,7 @@ EvtScript N(EVS_SummonStiltGuys) = {
 
 // actually unused
 EvtScript N(EVS_BeginWave_ShySquadRedux) = {
+    Call(SetAttackTimeScale)
     Call(UseBattleCamPreset, BTL_CAM_DEFAULT)
     Call(MoveBattleCamOver, 30)
     Wait(30)
@@ -735,6 +740,7 @@ EvtScript N(EVS_BeginWave_ShySquadRedux) = {
 };
 
 EvtScript N(EVS_BeginWave_Tank) = {
+    Call(SetAttackTimeScale)
     Call(EnableBattleStatusBar, FALSE)
     Call(UseBattleCamPreset, BTL_CAM_PRESET_14)
     Call(BattleCamTargetActor, ACTOR_GENERAL)

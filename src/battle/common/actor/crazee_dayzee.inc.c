@@ -223,6 +223,7 @@ EvtScript N(EVS_HandleEvent) = {
 };
 
 EvtScript N(EVS_Attack_Sing) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
     Call(GetBattlePhase, LVar0)
@@ -325,6 +326,7 @@ EvtScript N(EVS_Attack_Sing) = {
 };
 
 EvtScript N(EVS_Move_Flee) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(UseBattleCamPreset, BTL_CAM_PRESET_19)
     Call(SetBattleCamZoom, 300)

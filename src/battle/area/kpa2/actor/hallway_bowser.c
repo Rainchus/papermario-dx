@@ -559,6 +559,7 @@ EvtScript N(EVS_TakeTurn) = {
 };
 
 EvtScript N(EVS_Move_UseStarRod) = {
+    Call(SetAttackTimeScale)
     Call(GetActorVar, ACTOR_SELF, AVAR_Flags, LVar0)
     IfNotFlag(LVar0, AVAL_Flag_UsedStarRod)
         BitwiseOrConst(LVar0, AVAL_Flag_UsedStarRod)
@@ -581,6 +582,7 @@ EvtScript N(EVS_Move_UseStarRod) = {
 };
 
 EvtScript N(EVS_ReturnHome) = {
+    Call(SetAttackTimeScale)
     Set(LVar0, PRT_MAIN)
     Call(GetActorPos, ACTOR_SELF, LVarA, LVarB, LVarC)
     Call(SetGoalToHome, ACTOR_SELF)
@@ -610,6 +612,7 @@ EvtScript N(EVS_AnimateImgFX) = {
 };
 
 EvtScript N(EVS_StarRodCast) = {
+    Call(SetAttackTimeScale)
     Call(N(FadeBackgroundDarken))
     Call(GetStatusFlags, ACTOR_SELF, LVar3)
     Call(GetActorPos, ACTOR_SELF, LVar0, LVar1, LVar2)
@@ -753,6 +756,7 @@ EvtScript N(EVS_PlayFootstepSounds) = {
 };
 
 EvtScript N(EVS_Recover) = {
+    Call(SetAttackTimeScale)
     Call(GetActorVar, ACTOR_SELF, AVAR_RecoversLeft, LVar0)
     Sub(LVar0, 1)
     Call(SetActorVar, ACTOR_SELF, AVAR_RecoversLeft, LVar0)
@@ -823,6 +827,7 @@ EvtScript N(EVS_Recover) = {
 };
 
 EvtScript N(EVS_TakeTurn_Inner) = {
+    Call(SetAttackTimeScale)
     Call(AddActorVar, ACTOR_SELF, AVAR_TurnCount, 1)
     Call(AddActorVar, ACTOR_SELF, AVAR_TurnsSinceClawSwipe, 1)
     Call(AddActorVar, ACTOR_SELF, AVAR_TurnsSinceBodySlam, 1)
@@ -1020,6 +1025,7 @@ EvtScript N(EVS_ManageCommandLoss) = {
 };
 
 EvtScript N(EVS_Attack_BodySlam) = {
+    Call(SetAttackTimeScale)
     Call(SetActorVar, ACTOR_SELF, AVAR_TurnsSinceBodySlam, 0)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
     Call(GetStatusFlags, ACTOR_SELF, LVar0)
@@ -1225,6 +1231,7 @@ EvtScript N(EVS_Attack_BodySlam) = {
 };
 
 EvtScript N(EVS_AttackMissed) = {
+    Call(SetAttackTimeScale)
     Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_Tantrum)
     Thread
         Wait(5)
@@ -1240,6 +1247,7 @@ EvtScript N(EVS_AttackMissed) = {
 };
 
 EvtScript N(EVS_Attack_ClawSwipe) = {
+    Call(SetAttackTimeScale)
     Call(SetActorVar, ACTOR_SELF, AVAR_TurnsSinceClawSwipe, 0)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
     Call(GetStatusFlags, ACTOR_SELF, LVar0)
@@ -1327,6 +1335,7 @@ EvtScript N(EVS_Attack_ClawSwipe) = {
 };
 
 EvtScript N(EVS_UseDrainingShockwave) = {
+    Call(SetAttackTimeScale)
     Call(SetActorVar, ACTOR_SELF, AVAR_TurnsSinceShockwave, 0)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
     Call(SetGoalToTarget, ACTOR_SELF)
@@ -1475,6 +1484,7 @@ EvtScript N(EVS_UseDrainingShockwave) = {
 };
 
 EvtScript N(EVS_Attack_FireBreath) = {
+    Call(SetAttackTimeScale)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
     Call(SetGoalToTarget, ACTOR_SELF)
     Call(GetStatusFlags, ACTOR_SELF, LVar0)

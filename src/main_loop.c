@@ -14,6 +14,8 @@ SHIFT_BSS u16** nuGfxCfb;
 SHIFT_BSS s16 SoftResetDelay;
 SHIFT_BSS DisplayContext D_80164000[2];
 
+f32 gEnemyAttackTimescale = 1.0f;
+
 s8 gGameStepDelayAmount = 1;
 s8 gGameStepDelayCount = 5;
 
@@ -389,6 +391,11 @@ void set_time_freeze_mode(s32 mode) {
 
 s32 get_time_freeze_mode(void) {
     return timeFreezeMode;
+}
+
+ApiStatus SetAttackTimeScale(Evt* evt, s32 isInitialCall) {
+    evt->timeScale = gEnemyAttackTimescale;
+    return ApiStatus_DONE2;
 }
 
 #if VERSION_IQUE

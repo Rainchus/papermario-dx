@@ -1467,6 +1467,7 @@ EvtScript N(EVS_FakeBowser_HandleEvent) = {
 };
 
 EvtScript N(EVS_FakeBowser_TakeTurn) = {
+    Call(SetAttackTimeScale)
     UseArray(FakeBowserAnimState)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
@@ -2638,6 +2639,7 @@ EvtScript N(EVS_Broadcast_ToppleHit) = {
 
 // (in) LVarA : event
 EvtScript N(EVS_BroadcastToKoopaBros) = {
+    Call(SetAttackTimeScale)
     Call(ActorExists, GREEN_ACTOR, LVar0)
     IfEq(LVar0, TRUE)
         ExecGetTID(A(green_ninja_koopa_HandleCommand), LVar1)
@@ -3005,6 +3007,7 @@ EvtScript N(EVS_KoopaBros_HandleEvent) = {
 };
 
 EvtScript N(EVS_KoopaBros_TakeTurn) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     // reform stable tower if tipping
     Call(GetActorVar, ACTOR_SELF, AVAR_Boss_TowerState, LVar0)

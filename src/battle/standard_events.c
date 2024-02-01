@@ -1894,6 +1894,7 @@ EvtScript EVS_Enemy_SpinSmash_ShakeCam = {
 };
 
 EvtScript EVS_Enemy_SpinSmashHit = {
+    Call(SetAttackTimeScale)
     ExecGetTID(EVS_Enemy_SpinAround_Impl, LVarE)
     Call(SetAnimation, ACTOR_SELF, LVar0, LVar1)
     Call(GetPartEventFlags, ACTOR_SELF, LVar0, LVarA)
@@ -1926,6 +1927,7 @@ EvtScript EVS_Enemy_SpinSmashHit = {
 };
 
 EvtScript EVS_Enemy_FlipBackUp = {
+    Call(SetAttackTimeScale)
     Set(LVarA, LVar0)
     Set(LVarB, LVar1)
     Set(LVarC, LVar2)
@@ -1972,6 +1974,7 @@ EvtScript EVS_Enemy_Knockback = {
 };
 
 EvtScript EVS_Enemy_ReturnHome = {
+    Call(SetAttackTimeScale)
     Call(GetActorPos, ACTOR_SELF, LVarA, LVarB, LVarC)
     Call(SetGoalToHome, ACTOR_SELF)
     Call(GetGoalPos, ACTOR_SELF, LVarD, LVarE, LVarF)
@@ -1987,6 +1990,7 @@ EvtScript EVS_Enemy_ReturnHome = {
 };
 
 EvtScript EVS_Enemy_Recover = {
+    Call(SetAttackTimeScale)
     Call(SetAnimation, ACTOR_SELF, LVar0, LVar1)
     Call(SetActorJumpGravity, ACTOR_SELF, Float(1.8))
     Call(GetActorPos, ACTOR_SELF, LVar7, LVar8, LVar9)
@@ -2005,6 +2009,8 @@ EvtScript EVS_Enemy_Recover = {
 // (in) LVar0: part idx
 // (in) LVar1: hopping animID
 EvtScript EVS_Enemy_HopHome = {
+    Call(SetAttackTimeScale)
+    Call(SetAttackTimeScale)
     Call(SetAnimation, ACTOR_SELF, LVar0, LVar1)
     Call(SetGoalToHome, ACTOR_SELF)
     Call(GetGoalPos, ACTOR_SELF, LVar0, LVar1, LVar2)
@@ -2019,6 +2025,7 @@ EvtScript EVS_Enemy_HopHome = {
 // (in) LVar1: target posY
 // (in) LVar2: target posZ
 EvtScript EVS_Enemy_HopToPos = {
+    Call(SetAttackTimeScale)
     Call(GetActorPos, ACTOR_SELF, LVar3, LVar4, LVar5)
     Label(0)
         Call(GetActorPos, ACTOR_SELF, LVar3, LVar4, LVar5)

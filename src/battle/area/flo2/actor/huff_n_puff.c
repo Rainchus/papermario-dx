@@ -1368,6 +1368,7 @@ EvtScript N(EVS_HandlePhase) = {
 };
 
 EvtScript N(EVS_Attack_BodySlam) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
     Call(UseBattleCamPreset, BTL_CAM_ENEMY_APPROACH)
@@ -2025,6 +2026,7 @@ EvtScript N(EVS_Move_ChargeForGround) = {
 };
 
 EvtScript N(EVS_Attack_GroundLightning) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
     Call(UseBattleCamPreset, BTL_CAM_PRESET_19)
@@ -2170,6 +2172,7 @@ EvtScript N(EVS_Move_ChargeForDirect) = {
 };
 
 EvtScript N(EVS_Attack_DirectLightning) = {
+    Call(SetAttackTimeScale)
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
     Call(UseBattleCamPreset, BTL_CAM_ENEMY_APPROACH)
@@ -2370,6 +2373,7 @@ EvtScript N(EVS_Attack_DirectLightning) = {
 };
 
 EvtScript N(EVS_Attack_GroupSlam) = {
+    Call(SetAttackTimeScale)
     UseArray(N(RuffPuffDataBuffer))
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
@@ -2753,6 +2757,7 @@ EvtScript N(EVS_TuffPuff_SqueezePlayer) = {
 };
 
 EvtScript N(EVS_Attack_TuffPuffSwarm) = {
+    Call(SetAttackTimeScale)
     UseArray(N(RuffPuffDataBuffer))
     Call(UseIdleAnimation, ACTOR_SELF, FALSE)
     Call(SetTargetActor, ACTOR_SELF, ACTOR_PLAYER)
