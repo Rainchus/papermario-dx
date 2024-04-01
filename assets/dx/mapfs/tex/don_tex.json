@@ -1,0 +1,718 @@
+[
+    {
+        "name": "a",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "berosaide",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "blook2",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "dec_plant",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "field",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "green_e",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "hasMipmaps": true,
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "hanas",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "hana_b",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "hapa",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "hashi33",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "hon",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "hon2",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "house7",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "house8",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "ita",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "iwashita",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "iwatemae",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "iwatemae_i",
+        "main": {
+            "format": "IA4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "iwayuka",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "kabe8",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "kabe10",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "aux": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "kabe12",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "kabe12_w",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "kabe19",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "kabekusa",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "kirakira",
+        "main": {
+            "format": "IA8",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "aux": {
+            "format": "Shared",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "kishikaku",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "kusakusa1",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "kusa",
+        "main": {
+            "format": "RGBA16",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "kusari",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "midori03",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "miki4",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "nagare",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "reef_h",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "reef_i_kuki",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "renga10",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "renga12",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "renga_edge",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "ren_a",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "rock_edge_a",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "sabaku_b",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "saku",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "sima",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "suimen",
+        "main": {
+            "format": "IA16",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "aux": {
+            "format": "Shared",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "Bomp",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "nor_3c",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "blue_cap",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "plane_block",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "pen_snow",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "ryusei_gou_b",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Clamp",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "sakusaku",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "t1_iwakabe",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "temae1",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Clamp",
+            "vwrap": "Clamp"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "testImg",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "tesuri",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "to1_iwakabe",
+        "main": {
+            "format": "I4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "aux": {
+            "format": "I4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "turu_1",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "t_ha_iwahashira",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "t_iwahashira",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "t_iwakabe2",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "t_iwakabe2_ii",
+        "main": {
+            "format": "RGBA16",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "wall",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "aux": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "wall_m",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "water_soko",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "wood_floor_c",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "yuka6",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "yuka7",
+        "main": {
+            "format": "CI8",
+            "hwrap": "Mirror",
+            "vwrap": "Mirror"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "yuka",
+        "main": {
+            "format": "I4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    },
+    {
+        "name": "words",
+        "main": {
+            "format": "CI4",
+            "hwrap": "Repeat",
+            "vwrap": "Repeat"
+        },
+        "filter": true,
+        "combine": "Multiply"
+    }
+]
