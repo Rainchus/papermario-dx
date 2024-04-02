@@ -13,9 +13,11 @@ extern HudScript HES_PartnerRank1A;
 extern HudScript HES_PartnerRank1B;
 extern HudScript HES_PartnerRank2A;
 extern HudScript HES_PartnerRank2B;
+extern HudScript HES_PartnerRank3A;
+extern HudScript HES_PartnerRank3B;
 
-HudScript* D_80109890[] = { &HES_PartnerRank1A, &HES_PartnerRank2A };
-HudScript* D_80109898[] = { &HES_PartnerRank1B, &HES_PartnerRank2B };
+HudScript* D_80109890[] = { &HES_PartnerRank1A, &HES_PartnerRank2A, &HES_PartnerRank3A};
+HudScript* D_80109898[] = { &HES_PartnerRank1B, &HES_PartnerRank2B, &HES_PartnerRank3B};
 
 s16 PopupWorldStartX[] = {
     [POPUP_MENU_USE_ITEM]          140,
@@ -1382,9 +1384,9 @@ void popup_menu_draw_menu_contents(s32* userData, s32 baseX, s32 baseY, s32 widt
                             hud_element_set_script(id, D_80109898[j]);
                         }
                         if (gPopupMenu->popupType == POPUP_MENU_SWITCH_PARTNER) {
-                            hud_element_set_render_pos(id, x + 85 + j * 13, y + 10);
+                            hud_element_set_render_pos(id, x + 85 + j * 6, y + 10);
                         } else {
-                            hud_element_set_render_pos(id, x + 91 + j * 13, y + 10);
+                            hud_element_set_render_pos(id, x + 91 + j * 6, y + 10);
                         }
                         if (j < gPopupMenu->value[i]) {
                             hud_element_draw_next(id);

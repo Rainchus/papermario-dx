@@ -167,12 +167,13 @@ void clear_player_data(void) {
         #else
             playerData->partners[i].enabled = FALSE;
         #endif
-        playerData->partners[i].level = PARTNER_RANK_NORMAL;
+        playerData->partners[i].level = 3;
         playerData->partners[i].curHp = partnerHpList[i].level0Hp;
         playerData->partners[i].maxHp = partnerHpList[i].level0Hp;
         playerData->partners[i].trueMaxHp = partnerHpList[i].level0Hp;
     }
 
+    evt_set_variable(NULL, GB_StoryProgress, NEW_GAME_STORY_PROGRESS);
     playerData->curPartner = 1;
 
     for (i = 0; i < ARRAY_COUNT(playerData->keyItems); i++) {
