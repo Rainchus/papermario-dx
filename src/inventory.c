@@ -157,8 +157,6 @@ void clear_player_data(void) {
         playerData->starPower = 0;
         playerData->starBeamLevel = 0;
         playerData->curPartner = 0;
-        playerData->equippedBadges[0] = ITEM_POWER_PLUS_A;
-        playerData->equippedBadges[1] = ITEM_POWER_PLUS_B;
     #endif
 
     for (i = 0; i < ARRAY_COUNT(playerData->partners); i++) {

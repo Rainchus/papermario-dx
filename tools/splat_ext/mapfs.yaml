@@ -1,3 +1,5 @@
+- int_01_hit
+- int_01_shape
 - abv_01_hit
 - abv_01_shape
 - gar_01_hit
@@ -1000,6 +1002,7 @@
 - ash_tex
 - gar_tex
 - abv_tex
+- int_tex
 - mac_tex
 - tik_tex
 - kgr_tex

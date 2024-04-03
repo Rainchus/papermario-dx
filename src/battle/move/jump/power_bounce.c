@@ -14,6 +14,8 @@ s32 N(DifficultyTable)[] = {
 
 s32 N(BaseHitChance) = 200;
 
+BSS s32 N(HitCounter);
+
 API_CALLABLE(N(GetHitChance)) {
     Actor* targetActor = get_actor(get_actor(script->owner1.actorID)->targetActorID);
     s32 powerBounceChance;
@@ -25,14 +27,16 @@ API_CALLABLE(N(GetHitChance)) {
     }
     N(BaseHitChance) = N(BaseHitChance) * powerBounceChance / 100;
 
-    if (N(BaseHitChance) < rand_int(100)) {
+    if (N(HitCounter) == 2) {
         script->varTable[0] = 0;
     }
 
+    // if (N(BaseHitChance) < rand_int(100)) {
+    //     script->varTable[0] = 0;
+    // }
+
     return ApiStatus_DONE2;
 }
-
-BSS s32 N(HitCounter);
 
 API_CALLABLE(N(InitializeHitCounter)) {
     N(HitCounter) = 0;

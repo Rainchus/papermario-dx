@@ -906,8 +906,14 @@ MapConfig abv_maps[] = {
     { MAP_WITH_INIT(abv_01), .bgName = "yki_bg"},
 };
 
+#include "area_int/int.h"
+MapConfig int_maps[] = {
+    { MAP_WITH_INIT(int_01), .bgName = "kmr_bg"},
+};
+
 AreaConfig gAreas[] = {
     AREA(kmr, "クリむら"),  // kuri mura [kuribou village, Goomba Village]
+    AREA(int, "テストマップ"),
     AREA(don, "テストマップ"),
     AREA(ash, "テストマップ"),
     AREA(gar, "テストマップ"),

@@ -10886,6 +10886,13 @@ segments:
     - [auto, c, ash_01_main]
     - [auto, c, ash_01_entrances]
     - [auto, c, ash_01_tex_panners]
+  - name: int_01
+    dir: world/area_int/int_01
+    type: code
+    vram_class: map
+    subsegments:
+    - [auto, c, int_01_main]
+    - [auto, c, int_01_entrances]
   - name: jan_00
     dir: world/area_jan/jan_00
     type: code

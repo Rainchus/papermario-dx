@@ -17,6 +17,13 @@ SHIFT_BSS DisplayContext D_80164000[2];
 s8 gGameStepDelayAmount = 1;
 s8 gGameStepDelayCount = 5;
 
+NpcSettings NpcSettings_Default = {
+    .height = 22,
+    .radius = 24,
+    .level = ACTOR_LEVEL_NONE,
+    .actionFlags = AI_ACTION_LOOK_AROUND_DURING_LOITER,
+};
+
 GameStatus gGameStatus = {
     .curButtons = { 0 },
     .pressedButtons = { 0 },
