@@ -27,13 +27,15 @@ API_CALLABLE(N(GetHitChance)) {
     }
     N(BaseHitChance) = N(BaseHitChance) * powerBounceChance / 100;
 
-    if (N(HitCounter) == 2) {
-        script->varTable[0] = 0;
-    }
-
-    // if (N(BaseHitChance) < rand_int(100)) {
+    //force 3 cap
+    // if (N(HitCounter) == 2) {
     //     script->varTable[0] = 0;
     // }
+
+    //normal cap odds
+    if (N(BaseHitChance) < rand_int(100)) {
+        script->varTable[0] = 0;
+    }
 
     return ApiStatus_DONE2;
 }

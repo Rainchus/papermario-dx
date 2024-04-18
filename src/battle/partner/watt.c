@@ -9,6 +9,8 @@
 #include "sprite/npc/BattleWatt.h"
 #include "sprite/player.h"
 
+ApiStatus GetCurrentPartnerLevel(Evt*, s32);
+
 #define NAMESPACE battle_partner_watt
 
 extern EvtScript N(EVS_Init);
@@ -695,16 +697,16 @@ EvtScript N(EVS_ExecuteAction) = {
     EVT_SWITCH(LVar2)
         EVT_CASE_EQ(MOVE_ELECTRO_DASH1)
             EVT_EXEC_WAIT(N(EVS_Attack_ElectroDash))
-        EVT_CASE_EQ(MOVE_ELECTRO_DASH2)
-            EVT_EXEC_WAIT(N(EVS_Attack_ElectroDash))
-        EVT_CASE_EQ(MOVE_ELECTRO_DASH3)
-            EVT_EXEC_WAIT(N(EVS_Attack_ElectroDash))
         EVT_CASE_EQ(MOVE_POWER_SHOCK)
             EVT_EXEC_WAIT(N(EVS_Attack_PowerShock))
         EVT_CASE_EQ(MOVE_TURBO_CHARGE)
             EVT_EXEC_WAIT(N(EVS_Move_TurboCharge))
         EVT_CASE_EQ(MOVE_MEGA_SHOCK)
             EVT_EXEC_WAIT(N(EVS_Attack_MegaShock))
+        EVT_CASE_EQ(MOVE_ELECTRO_DASH2)
+            EVT_EXEC_WAIT(N(EVS_Attack_ElectroDash))
+        EVT_CASE_EQ(MOVE_ELECTRO_DASH3)
+            EVT_EXEC_WAIT(N(EVS_Attack_ElectroDash))
     EVT_END_SWITCH
     EVT_RETURN
     EVT_END
@@ -933,14 +935,21 @@ EvtScript N(EVS_Attack_ElectroDash) = {
     EVT_CALL(GetMenuSelection, LVar0, LVar1, LVar2)
     EVT_SWITCH(LVar2)
         EVT_CASE_EQ(MOVE_ELECTRO_DASH1)
-            EVT_SET(LVarE, 1)
-            EVT_SET(LVarF, 3)
-        EVT_CASE_EQ(MOVE_ELECTRO_DASH2)
-            EVT_SET(LVarE, 1)
-            EVT_SET(LVarF, 4)
-        EVT_CASE_EQ(MOVE_ELECTRO_DASH3)
-            EVT_SET(LVarE, 1)
-            EVT_SET(LVarF, 5)
+            EVT_CALL(GetCurrentPartnerLevel, LVarE)
+            EVT_SWITCH(LVarE)
+                EVT_CASE_EQ(0)
+                    EVT_SET(LVarE, 1)
+                    EVT_SET(LVarF, 3)
+                EVT_CASE_EQ(1)
+                    EVT_SET(LVarE, 1)
+                    EVT_SET(LVarF, 4)
+                EVT_CASE_EQ(2)
+                    EVT_SET(LVarE, 1)
+                    EVT_SET(LVarF, 5)
+                EVT_CASE_EQ(3)
+                    EVT_SET(LVarE, 1)
+                    EVT_SET(LVarF, 6)
+            EVT_END_SWITCH
     EVT_END_SWITCH
     EVT_CALL(GetPartnerActionSuccess, LVar0)
     EVT_SWITCH(LVar0)

@@ -4054,13 +4054,13 @@ void btl_state_update_partner_striking_first(void) {
                 case PARTNER_KOOPER:
                     battleStatus->moveCategory = BTL_MENU_TYPE_CHANGE_PARTNER;
                     battleStatus->moveArgument = 0;
-                    battleStatus->selectedMoveID = level + MOVE_SHELL_TOSS1;
+                    battleStatus->selectedMoveID = MOVE_SHELL_TOSS1;
                     battleStatus->curTargetListFlags = gMoveTable[battleStatus->selectedMoveID].flags;
                     break;
                 case PARTNER_BOMBETTE:
                     battleStatus->moveCategory = BTL_MENU_TYPE_CHANGE_PARTNER;
                     battleStatus->moveArgument = 0;
-                    battleStatus->selectedMoveID = level + MOVE_BODY_SLAM1;
+                    battleStatus->selectedMoveID = MOVE_BODY_SLAM1;
                     battleStatus->curTargetListFlags = gMoveTable[battleStatus->selectedMoveID].flags;
                     break;
             }

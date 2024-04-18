@@ -400,6 +400,10 @@ EvtScript N(PrepScript) = {
     code \
     EVT_END_IF
 
+#define ELSE(code) \
+    EVT_ELSE \
+    code
+
 EvtScript N(BootlerExclaimShocked) = {
     EVT_CALL(SetNpcAnimation, NPC_Bootler, 0x00BF0006)
     EVT_WAIT(30)

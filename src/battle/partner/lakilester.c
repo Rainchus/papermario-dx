@@ -9,6 +9,8 @@
 #include "hud_element.h"
 #include "sprite/player.h"
 
+ApiStatus GetCurrentPartnerLevel(Evt*, s32);
+
 #define NAMESPACE battle_partner_lakilester
 
 extern EvtScript N(EVS_HandleEvent);
@@ -324,12 +326,6 @@ EvtScript N(EVS_ExecuteAction) = {
         EVT_CASE_EQ(MOVE_SPINY_FLIP1)
             EVT_CALL(SetBattleFlagBits, BS_FLAGS1_4000, FALSE)
             EVT_EXEC_WAIT(N(EVS_Move_SpinyFlip))
-        EVT_CASE_EQ(MOVE_SPINY_FLIP2)
-            EVT_CALL(SetBattleFlagBits, BS_FLAGS1_4000, FALSE)
-            EVT_EXEC_WAIT(N(EVS_Move_SpinyFlip))
-        EVT_CASE_EQ(MOVE_SPINY_FLIP3)
-            EVT_CALL(SetBattleFlagBits, BS_FLAGS1_4000, FALSE)
-            EVT_EXEC_WAIT(N(EVS_Move_SpinyFlip))
         EVT_CASE_EQ(MOVE_SPINY_SURGE)
             EVT_EXEC_WAIT(N(EVS_Move_SpinySurge))
         EVT_CASE_EQ(MOVE_CLOUD_NINE)
@@ -337,6 +333,12 @@ EvtScript N(EVS_ExecuteAction) = {
             EVT_EXEC_WAIT(N(EVS_Move_CloudNine))
         EVT_CASE_EQ(MOVE_HURRICANE)
             EVT_EXEC_WAIT(N(EVS_Move_Hurricane))
+        EVT_CASE_EQ(MOVE_SPINY_FLIP2)
+            EVT_CALL(SetBattleFlagBits, BS_FLAGS1_4000, FALSE)
+            EVT_EXEC_WAIT(N(EVS_Move_SpinyFlip))
+        EVT_CASE_EQ(MOVE_SPINY_FLIP3)
+            EVT_CALL(SetBattleFlagBits, BS_FLAGS1_4000, FALSE)
+            EVT_EXEC_WAIT(N(EVS_Move_SpinyFlip))
     EVT_END_SWITCH
     EVT_RETURN
     EVT_END
@@ -930,11 +932,17 @@ EvtScript N(EVS_Move_SpinyFlip) = {
     EVT_CALL(GetMenuSelection, LVar0, LVar1, LVar2)
     EVT_SWITCH(LVar2)
         EVT_CASE_EQ(MOVE_SPINY_FLIP1)
-            EVT_SET(LVarE, 3)
-        EVT_CASE_EQ(MOVE_SPINY_FLIP2)
-            EVT_SET(LVarE, 4)
-        EVT_CASE_EQ(MOVE_SPINY_FLIP3)
-            EVT_SET(LVarE, 5)
+        EVT_CALL(GetCurrentPartnerLevel, LVarE)
+        EVT_SWITCH(LVarE)
+            EVT_CASE_EQ(0)
+                EVT_SET(LVarE, 3)
+            EVT_CASE_EQ(1)
+                EVT_SET(LVarE, 4)
+            EVT_CASE_EQ(2)
+                EVT_SET(LVarE, 5)
+            EVT_CASE_EQ(3)
+                EVT_SET(LVarE, 6)
+        EVT_END_SWITCH
     EVT_END_SWITCH
     EVT_SWITCH(LVarF)
         EVT_CASE_GT(0)

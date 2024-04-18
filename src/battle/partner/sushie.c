@@ -8,6 +8,8 @@
 #include "battle/action_cmd/tidal_wave.h"
 #include "sprite/npc/BattleSushie.h"
 
+ApiStatus GetCurrentPartnerLevel(Evt*, s32);
+
 #define NAMESPACE battle_partner_sushie
 
 extern EvtScript N(EVS_HandleEvent);
@@ -611,16 +613,16 @@ EvtScript N(EVS_ExecuteAction) = {
     EVT_SWITCH(LVar2)
         EVT_CASE_EQ(MOVE_BELLY_FLOP1)
             EVT_EXEC_WAIT(N(bellyFlop))
-        EVT_CASE_EQ(MOVE_BELLY_FLOP2)
-            EVT_EXEC_WAIT(N(bellyFlop))
-        EVT_CASE_EQ(MOVE_BELLY_FLOP3)
-            EVT_EXEC_WAIT(N(bellyFlop))
         EVT_CASE_EQ(MOVE_SQUIRT)
             EVT_EXEC_WAIT(N(squirt))
         EVT_CASE_EQ(MOVE_WATER_BLOCK)
             EVT_EXEC_WAIT(N(waterBlock))
         EVT_CASE_EQ(MOVE_TIDAL_WAVE)
             EVT_EXEC_WAIT(N(tidalWave))
+        EVT_CASE_EQ(MOVE_BELLY_FLOP2)
+            EVT_EXEC_WAIT(N(bellyFlop))
+        EVT_CASE_EQ(MOVE_BELLY_FLOP3)
+            EVT_EXEC_WAIT(N(bellyFlop))
     EVT_END_SWITCH
     EVT_RETURN
     EVT_END
@@ -818,7 +820,7 @@ EvtScript N(bellyFlop) = {
         EVT_ELSE
             EVT_CALL(GetMenuSelection, LVar0, LVar1, LVar2)
             EVT_SWITCH(LVar2)
-                EVT_CASE_EQ(167)
+                EVT_CASE_EQ(MOVE_BELLY_FLOP1)
                     EVT_WAIT(13)
                     EVT_CALL(SetActorScale, ACTOR_PARTNER, EVT_FLOAT(1.0), EVT_FLOAT(1.0), EVT_FLOAT(1.0))
                     EVT_WAIT(1)
@@ -829,7 +831,7 @@ EvtScript N(bellyFlop) = {
                     EVT_CALL(SetActorScale, ACTOR_PARTNER, EVT_FLOAT(1.0), EVT_FLOAT(1.0), EVT_FLOAT(1.0))
                     EVT_WAIT(1)
                     EVT_CALL(SetActorScale, ACTOR_PARTNER, EVT_FLOAT(1.0), EVT_FLOAT(1.0), EVT_FLOAT(1.0))
-                EVT_CASE_EQ(168)
+                EVT_CASE_EQ(MOVE_BELLY_FLOP2)
                     EVT_WAIT(13)
                     EVT_CALL(SetActorScale, ACTOR_PARTNER, EVT_FLOAT(1.05), EVT_FLOAT(1.05), EVT_FLOAT(1.0))
                     EVT_WAIT(1)
@@ -840,7 +842,7 @@ EvtScript N(bellyFlop) = {
                     EVT_CALL(SetActorScale, ACTOR_PARTNER, EVT_FLOAT(1.2), EVT_FLOAT(1.2), EVT_FLOAT(1.0))
                     EVT_WAIT(1)
                     EVT_CALL(SetActorScale, ACTOR_PARTNER, EVT_FLOAT(1.25), EVT_FLOAT(1.25), EVT_FLOAT(1.0))
-                EVT_CASE_EQ(169)
+                EVT_CASE_EQ(MOVE_BELLY_FLOP3)
                     EVT_WAIT(13)
                     EVT_CALL(SetActorScale, ACTOR_PARTNER, EVT_FLOAT(1.1), EVT_FLOAT(1.1), EVT_FLOAT(1.0))
                     EVT_WAIT(1)
@@ -880,14 +882,21 @@ EvtScript N(bellyFlop) = {
     EVT_CALL(GetMenuSelection, LVar0, LVar1, LVar2)
     EVT_SWITCH(LVar2)
         EVT_CASE_EQ(MOVE_BELLY_FLOP1)
-            EVT_SET(LVarE, 1)
-            EVT_SET(LVarF, 3)
-        EVT_CASE_EQ(MOVE_BELLY_FLOP2)
-            EVT_SET(LVarE, 2)
-            EVT_SET(LVarF, 4)
-        EVT_CASE_EQ(MOVE_BELLY_FLOP3)
-            EVT_SET(LVarE, 3)
-            EVT_SET(LVarF, 5)
+        EVT_CALL(GetCurrentPartnerLevel, LVarE)
+        EVT_SWITCH(LVarE)
+            EVT_CASE_EQ(0)
+                EVT_SET(LVarE, 1)
+                EVT_SET(LVarF, 3)
+            EVT_CASE_EQ(1)
+                EVT_SET(LVarE, 2)
+                EVT_SET(LVarF, 4)
+            EVT_CASE_EQ(2)
+                EVT_SET(LVarE, 3)
+                EVT_SET(LVarF, 5)
+            EVT_CASE_EQ(3)
+                EVT_SET(LVarE, 4)
+                EVT_SET(LVarF, 6)
+        EVT_END_SWITCH
     EVT_END_SWITCH
     EVT_CALL(PartnerTestEnemy, LVar0, 0, SUPPRESS_EVENT_SPIKY_FRONT | SUPPRESS_EVENT_BURN_CONTACT, 0, 1, BS_FLAGS1_INCLUDE_POWER_UPS)
     EVT_IF_EQ(LVar0, HIT_RESULT_MISS)

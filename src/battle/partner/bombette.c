@@ -636,16 +636,16 @@ EvtScript N(EVS_ExecuteAction) = {
     EVT_SWITCH(LVar2)
         EVT_CASE_EQ(MOVE_BODY_SLAM1)
             EVT_EXEC_WAIT(N(EVS_Attack_BodySlam))
-        EVT_CASE_EQ(MOVE_BODY_SLAM2)
-            EVT_EXEC_WAIT(N(EVS_Attack_BodySlam))
-        EVT_CASE_EQ(MOVE_BODY_SLAM3)
-            EVT_EXEC_WAIT(N(EVS_Attack_BodySlam))
         EVT_CASE_EQ(MOVE_BOMB)
             EVT_EXEC_WAIT(N(EVS_Attack_Bomb))
         EVT_CASE_EQ(MOVE_POWER_BOMB)
             EVT_EXEC_WAIT(N(EVS_Attack_Bomb))
         EVT_CASE_EQ(MOVE_MEGA_BOMB)
             EVT_EXEC_WAIT(N(EVS_Attack_Bomb))
+        EVT_CASE_EQ(MOVE_BODY_SLAM2)
+            EVT_EXEC_WAIT(N(EVS_Attack_BodySlam))
+        EVT_CASE_EQ(MOVE_BODY_SLAM3)
+            EVT_EXEC_WAIT(N(EVS_Attack_BodySlam))
     EVT_END_SWITCH
     EVT_RETURN
     EVT_END

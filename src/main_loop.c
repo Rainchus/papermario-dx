@@ -398,6 +398,15 @@ s32 get_time_freeze_mode(void) {
     return timeFreezeMode;
 }
 
+ApiStatus GetCurrentPartnerLevel(Evt* script, s32 isInitialCall) {
+	Bytecode* args = script->ptrReadPos;
+	s32 partnerLevel = gPlayerData.partners[gPlayerData.curPartner].level;
+
+	evt_set_variable(script, *args++, partnerLevel);
+
+	return ApiStatus_DONE2;
+}
+
 #if VERSION_IQUE
 static const f32 rodata_padding[] = {0.0f, 0.0f};
 #endif

@@ -7,6 +7,8 @@
 #include "battle/action_cmd/air_raid.h"
 #include "sprite/npc/BattleParakarry.h"
 
+ApiStatus GetCurrentPartnerLevel(Evt*, s32);
+
 #define NAMESPACE battle_partner_parakarry
 
 extern HudScript HES_AimMarkerA;
@@ -820,21 +822,29 @@ EvtScript N(EVS_ExecuteAction) = {
     EVT_END_SWITCH
     EVT_CALL(GetMenuSelection, LVar0, LVar1, LVar2)
     EVT_SWITCH(LVar2)
-        EVT_CASE_EQ(MOVE_SKY_DIVE1)
+        EVT_CASE_OR_EQ(MOVE_SKY_DIVE1)
+        EVT_CASE_OR_EQ(MOVE_SKY_DIVE2)
+        EVT_CASE_OR_EQ(MOVE_SKY_DIVE3)
+            EVT_CALL(GetCurrentPartnerLevel, LVarE)
+            EVT_SWITCH(LVarE)
+                EVT_CASE_EQ(0)
+                    EVT_SET(LVarE, 1)
+                    EVT_SET(LVarF, 2)
+                EVT_CASE_EQ(1)
+                    EVT_SET(LVarE, 2)
+                    EVT_SET(LVarF, 3)
+                EVT_CASE_EQ(2)
+                    EVT_SET(LVarE, 4)
+                    EVT_SET(LVarF, 5)
+                EVT_CASE_EQ(3)
+                    EVT_SET(LVarE, 4)
+                    EVT_SET(LVarF, 6)
+            EVT_END_SWITCH
             EVT_CALL(SetBattleFlagBits, BS_FLAGS1_4000, FALSE)
             EVT_SET(LVarE, 1)
             EVT_SET(LVarF, 2)
             EVT_EXEC_WAIT(N(skyDive))
-        EVT_CASE_EQ(MOVE_SKY_DIVE2)
-            EVT_CALL(SetBattleFlagBits, BS_FLAGS1_4000, FALSE)
-            EVT_SET(LVarE, 2)
-            EVT_SET(LVarF, 3)
-            EVT_EXEC_WAIT(N(skyDive))
-        EVT_CASE_EQ(MOVE_SKY_DIVE3)
-            EVT_CALL(SetBattleFlagBits, BS_FLAGS1_4000, FALSE)
-            EVT_SET(LVarE, 4)
-            EVT_SET(LVarF, 5)
-            EVT_EXEC_WAIT(N(skyDive))
+
         EVT_CASE_EQ(MOVE_SHELL_SHOT)
             EVT_CALL(SetBattleFlagBits, BS_FLAGS1_4000, FALSE)
             EVT_EXEC_WAIT(N(shellShot))

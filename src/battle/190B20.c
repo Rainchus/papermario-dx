@@ -905,6 +905,19 @@ void btl_init_menu_hammer(void) {
     }
 }
 
+s32 firstPartnerMove[] = {
+    0, //NONE
+    MOVE_HEADBONK1,
+    MOVE_SHELL_TOSS1,
+    MOVE_BODY_SLAM1,
+    MOVE_SKY_DIVE1,
+    0, //goompa
+    MOVE_ELECTRO_DASH1,
+    MOVE_BELLY_FLOP1,
+    MOVE_SPINY_FLIP1,
+    MOVE_SMACK1
+};
+
 void btl_init_menu_partner(void) {
     PlayerData* playerData = &gPlayerData;
     BattleStatus* battleStatus = &gBattleStatus;
@@ -931,18 +944,13 @@ void btl_init_menu_partner(void) {
 
     battleStatus->submenuMoveCount = partner->actorBlueprint->level + 2;
 
-    // Offsets 0,1,2
-    battleStatus->submenuMoves[0] =
-        playerData->curPartner * 6
-        + (MOVE_HEADBONK1 - 6)
-        + partner->actorBlueprint->level;
+    //always get the first move
+    battleStatus->submenuMoves[0] = firstPartnerMove[playerData->curPartner];
 
-    // Offsets 3,4,5
+    // Order of moves was changed from having 3 of the same base attack to only 1
+    // So here, we build the list assuming that
     for (i = 1; i < battleStatus->submenuMoveCount; i++) {
-        battleStatus->submenuMoves[i] =
-            playerData->curPartner * 6
-            + (MOVE_TATTLE - 6)
-            + (i - 1);
+        battleStatus->submenuMoves[i] = firstPartnerMove[playerData->curPartner] + i;
     }
 
     hasAnyBadgeMoves = FALSE;
