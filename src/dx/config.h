@@ -15,7 +15,7 @@
 #define DX_SKIP_FILE_SELECT 0
 
 /// Map to load when starting a new game.
-#define NEW_GAME_MAP_ID "don_01"
+#define NEW_GAME_MAP_ID "nok_11"
 
 /// Entry to use when starting a new game.
 #define NEW_GAME_ENTRY_ID 0

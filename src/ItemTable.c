@@ -5,6 +5,132 @@
 #include "item_entity.h"
 #include "icon_offsets.h"
 
+s32 HPPlusRaster[] = {
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000077, 0x77000000, 0x00000000,
+    0x00000000, 0x00000777, 0x77700000, 0x00000000,
+    0x00000000, 0x00007773, 0x37770000, 0x00000000,
+    0x00000000, 0x00007733, 0x55770000, 0x00000000,
+    0x00000000, 0x00077335, 0x55577000, 0x00000000,
+    0x00000000, 0x00778355, 0x55587700, 0x00000000,
+    0x00000000, 0x00773555, 0x55557700, 0x00000000,
+    0x00000000, 0x07733555, 0x55555770, 0x00000000,
+    0x00000000, 0x77222229, 0x52222277, 0x00000000,
+    0x00000000, 0x7721BCD2, 0x2DAB1277, 0x00000000,
+    0x00000007, 0x72DBCCD2, 0xDABCCD27, 0x70000000,
+    0x00000007, 0x72BCCDAD, 0xBBC66666, 0x66000000,
+    0x00000077, 0x21CCDAAB, 0xBC666666, 0x66660000,
+    0x00000077, 0x21CDAABB, 0xC6664444, 0x44666000,
+    0x00000775, 0x211AABBC, 0x66644444, 0x44466600,
+    0x00000773, 0x521ABBCC, 0x66446644, 0x66446600,
+    0x00007783, 0x5921BCC6, 0x64446644, 0x66444660,
+    0x00007733, 0x55921CD6, 0x64446644, 0x66444660,
+    0x00007833, 0x559922B6, 0x64446644, 0x66444660,
+    0x00007835, 0x55599226, 0x64444444, 0x44444660,
+    0x00007785, 0x55559926, 0x64446444, 0x46444660,
+    0x00007777, 0x77777776, 0x66446666, 0x66446660,
+    0x00000777, 0x77777777, 0x66644666, 0x64466600,
+    0x00000000, 0x00000000, 0x06666444, 0x46666000,
+    0x00000000, 0x00000000, 0x00666666, 0x66660000,
+    0x00000000, 0x00000000, 0x00006666, 0x66000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+};
+
+s32 HPPlusPalette[] = {
+    0x8A00AA17, 0x80D1F749, 0xFF81ED85, 0x51818A01,
+    0xBAC3EB85, 0xE5A9D4A3, 0xCB9BBA97, 0xBA97BA97
+};
+
+s32 HPPlusRaster_Alt[] = {
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000077, 0x77000000, 0x00000000,
+    0x00000000, 0x00000777, 0x77700000, 0x00000000,
+    0x00000000, 0x00007773, 0x37770000, 0x00000000,
+    0x00000000, 0x00007733, 0x55770000, 0x00000000,
+    0x00000000, 0x00077335, 0x55577000, 0x00000000,
+    0x00000000, 0x00778355, 0x55587700, 0x00000000,
+    0x00000000, 0x00773555, 0x55557700, 0x00000000,
+    0x00000000, 0x07733555, 0x55555770, 0x00000000,
+    0x00000000, 0x77222225, 0x52222277, 0x00000000,
+    0x00000000, 0x7721BCD2, 0x2DAB1277, 0x00000000,
+    0x00000007, 0x72DBCCD2, 0xDABCCD27, 0x70000000,
+    0x00000007, 0x72BCCDAD, 0xBBC66666, 0x66000000,
+    0x00000077, 0x21CCDAAB, 0xBC666666, 0x66660000,
+    0x00000077, 0x21CDAABB, 0xC6664444, 0x44666000,
+    0x00000775, 0x211AABBC, 0x66644444, 0x44466600,
+    0x00000773, 0x521ABBCC, 0x66446644, 0x66446600,
+    0x00007783, 0x5521BCC6, 0x64446644, 0x66444660,
+    0x00007733, 0x55521CD6, 0x64446644, 0x66444660,
+    0x00007833, 0x555522B6, 0x64446644, 0x66444660,
+    0x00007835, 0x55555226, 0x64444444, 0x44444660,
+    0x00007785, 0x55555526, 0x64446444, 0x46444660,
+    0x00007777, 0x77777776, 0x66446666, 0x66446660,
+    0x00000777, 0x77777777, 0x66644666, 0x64466600,
+    0x00000000, 0x00000000, 0x06666444, 0x46666000,
+    0x00000000, 0x00000000, 0x00666666, 0x66660000,
+    0x00000000, 0x00000000, 0x00006666, 0x66000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+};
+
+s32 HPPlusPalette_Alt[] = {
+    0x6B5AB5AD, 0x739DC631, 0xBDEFBDEF, 0x42116B5B,
+    0x9CE7BDEF, 0xEF7BE739, 0xD6B5C631, 0xC631C631
+};
+
+HudScript HES_Item_HPPlus_P = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_32x32)
+    hs_Loop
+    HUD_ELEMENT_OP_SetCI, 60, HPPlusRaster, HPPlusPalette,
+    hs_Restart
+    hs_End
+};
+
+HudScript HES_Item_HPPlus_P_Alt = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_32x32)
+    hs_Loop
+    HUD_ELEMENT_OP_SetCI, 60, HPPlusRaster_Alt, HPPlusPalette_Alt,
+    hs_Restart
+    hs_End
+};
+
+//MOD TODO: uses hp plus's icon currently
+HudScript HES_Item_PowerPlus_P = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_32x32)
+    hs_Loop
+    HUD_ELEMENT_OP_SetCI, 60, HPPlusRaster, HPPlusPalette,
+    hs_Restart
+    hs_End
+};
+
+//MOD TODO: uses hp plus's icon currently
+HudScript HES_Item_PowerPlus_P_Alt = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_32x32)
+    hs_Loop
+    HUD_ELEMENT_OP_SetCI, 60, HPPlusRaster_Alt, HPPlusPalette_Alt,
+    hs_Restart
+    hs_End
+};
+
+#define MSG_Name_HP_Plus_P MESSAGE_ID(0x30, 0x000)
+#define MSG_ItemFullDesc_HP_Plus_P MESSAGE_ID(0x30, 0x001)
+#define MSG_ItemShortDesc_HP_Plus_P MESSAGE_ID(0x30, 0x002)
+
+#define MSG_Power_Plus_P_Name MESSAGE_ID(0x30, 0x003)
+#define MSG_ItemFullDesc_Power_Plus_P MESSAGE_ID(0x30, 0x004)
+#define MSG_ItemShortDesc_Power_Plus_P MESSAGE_ID(0x30, 0x005)
+
 HudScript HES_Item_Present = HES_TEMPLATE_STANDARD_ITEM(key_Gift);
 HudScript HES_Item_CakeDone = HES_TEMPLATE_STANDARD_ITEM(key_CakeDone);
 HudScript HES_Item_CakeBare = HES_TEMPLATE_STANDARD_ITEM(key_CakeBare);
@@ -580,7 +706,7 @@ HudScript HES_Item_Unused_136_disabled = HES_TEMPLATE_STANDARD_ITEM(battle_item_
 HudScript HES_Item_Unused_137 = HES_TEMPLATE_STANDARD_ITEM(battle_item_137);
 HudScript HES_Item_Unused_137_disabled = HES_TEMPLATE_STANDARD_ITEM(battle_item_137_disabled);
 
-s32 pad_after_item_hudscripts[] = { 0, 0 };
+// s32 pad_after_item_hudscripts[] = { 0, 0 };
 
 ItemData gItemTable[] = {
     {   // 0x000: None
@@ -5016,20 +5142,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x155: HPPlusP
-        .nameMsg = MSG_ItemName_HPPlus,
-        .fullDescMsg = MSG_ItemFullDesc_HPPlus,
-        .shortDescMsg = MSG_ItemShortDesc_HPPlus,
-        .hudElemID = 151, // HES_Item_HPPlus
-        .sellValue = 150,
-        .sortValue = 53,
-        .targetFlags = 0,
-        .typeFlags = ITEM_TYPE_FLAG_BADGE | ITEM_TYPE_FLAG_ENTITY_FULLSIZE,
-        .moveID = MOVE_HP_PLUS_P,
-        .potencyA = 0,
-        .potencyB = 0,
-    },
-    {   // 0x156: PartnerAttack
+    {   // 0x155: PartnerAttack
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5042,7 +5155,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x157: Heart
+    {   // 0x156: Heart
         .nameMsg = MSG_ItemName_Heart,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5055,7 +5168,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x158: Coin
+    {   // 0x157: Coin
         .nameMsg = MSG_ItemName_Coin,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5068,7 +5181,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x159: HeartPiece
+    {   // 0x158: HeartPiece
         .nameMsg = MSG_ItemName_HeartPiece,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5081,7 +5194,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x15A: StarPoint
+    {   // 0x159: StarPoint
         .nameMsg = MSG_ItemName_StarPoint,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5094,7 +5207,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x15B: HeartPoint
+    {   // 0x15A: HeartPoint
         .nameMsg = MSG_ItemName_HeartPoint,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5107,7 +5220,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x15C: FlowerPoint
+    {   // 0x15B: FlowerPoint
         .nameMsg = MSG_ItemName_FlowerPoint,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5120,7 +5233,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x15D: StarPiece
+    {   // 0x15C: StarPiece
         .nameMsg = MSG_ItemName_StarPiece,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5133,7 +5246,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x15E: Present
+    {   // 0x15D: Present
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5146,7 +5259,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x15F: CakeDone
+    {   // 0x15E: CakeDone
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5159,7 +5272,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x160: CakeBare
+    {   // 0x15F: CakeBare
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5172,7 +5285,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x161: CakePan
+    {   // 0x160: CakePan
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5185,7 +5298,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x162: CakeBatter
+    {   // 0x161: CakeBatter
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5198,7 +5311,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x163: CakeBowl
+    {   // 0x162: CakeBowl
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5211,7 +5324,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x164: CakeMixed
+    {   // 0x163: CakeMixed
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5224,7 +5337,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x165: CakeWithIcing
+    {   // 0x164: CakeWithIcing
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5237,7 +5350,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x166: CakeWithBerries
+    {   // 0x165: CakeWithBerries
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5250,7 +5363,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x167: MenuHammer1
+    {   // 0x166: MenuHammer1
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5263,7 +5376,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x168: MenuHammer2
+    {   // 0x167: MenuHammer2
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5276,7 +5389,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x169: MenuHammer3
+    {   // 0x168: MenuHammer3
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5289,7 +5402,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x16A: MenuBoots1
+    {   // 0x169: MenuBoots1
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5302,7 +5415,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x16B: MenuBoots2
+    {   // 0x16A: MenuBoots2
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5315,7 +5428,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x16C: MenuBoots3
+    {   // 0x16B: MenuBoots3
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5328,7 +5441,7 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x16D: MenuItems
+    {   // 0x16C: MenuItems
         .nameMsg = MSG_NONE,
         .fullDescMsg = MSG_NONE,
         .shortDescMsg = MSG_NONE,
@@ -5338,6 +5451,32 @@ ItemData gItemTable[] = {
         .targetFlags = TARGET_FLAG_PLAYER,
         .typeFlags = ITEM_TYPE_FLAG_ENTITY_FULLSIZE,
         .moveID = MOVE_NONE,
+        .potencyA = 0,
+        .potencyB = 0,
+    },
+    {   // 0x16D: HPPlusP
+        .nameMsg = MSG_Name_HP_Plus_P,
+        .fullDescMsg = MSG_ItemFullDesc_HP_Plus_P,
+        .shortDescMsg = MSG_ItemShortDesc_HP_Plus_P,
+        .hudElemID = 337, // HES_Item_HPPlus_P
+        .sellValue = 150,
+        .sortValue = 53,
+        .targetFlags = 0,
+        .typeFlags = ITEM_TYPE_FLAG_BADGE | ITEM_TYPE_FLAG_ENTITY_FULLSIZE,
+        .moveID = MOVE_HP_PLUS_P,
+        .potencyA = 0,
+        .potencyB = 0,
+    },
+    {   // 0x16E: PowerPlusP
+        .nameMsg = MSG_Power_Plus_P_Name,
+        .fullDescMsg = MSG_ItemFullDesc_Power_Plus_P,
+        .shortDescMsg = MSG_ItemShortDesc_Power_Plus_P,
+        .hudElemID = 338, // HES_Item_PowerPlus
+        .sellValue = 150,
+        .sortValue = 53,
+        .targetFlags = 0,
+        .typeFlags = ITEM_TYPE_FLAG_BADGE | ITEM_TYPE_FLAG_ENTITY_FULLSIZE,
+        .moveID = MOVE_POWER_PLUS_P,
         .potencyA = 0,
         .potencyB = 0,
     },
@@ -5586,7 +5725,6 @@ IconHudScriptPair gItemHudScripts[] = {
     { .enabled = &HES_Item_AttackFXE, .disabled = &HES_Item_AttackFXE_disabled },
     { .enabled = &HES_Item_AttackFXC, .disabled = &HES_Item_AttackFXC_disabled },
     { .enabled = &HES_Item_AttackFXF, .disabled = &HES_Item_AttackFXF_disabled },
-    { .enabled = &HES_Item_HPPlus, .disabled = &HES_Item_HPPlus_disabled }, //hp_plus_p
     { .enabled = &HES_Item_Unused_0EF, .disabled = &HES_Item_Unused_0EF_disabled },
     { .enabled = &HES_Item_HealthyHealthy, .disabled = &HES_Item_HealthyHealthy_disabled },
     { .enabled = &HES_Item_Unused_0F1, .disabled = &HES_Item_Unused_0F1_disabled },
@@ -5685,6 +5823,8 @@ IconHudScriptPair gItemHudScripts[] = {
     { .enabled = &HES_Item_MenuBoots2, .disabled = &HES_Item_MenuBoots2 },
     { .enabled = &HES_Item_MenuBoots3, .disabled = &HES_Item_MenuBoots3 },
     { .enabled = &HES_Item_MenuItems, .disabled = &HES_Item_MenuItems },
+    { .enabled = &HES_Item_HPPlus_P, .disabled = &HES_Item_HPPlus_P_Alt },
+    { .enabled = &HES_Item_PowerPlus_P, .disabled = &HES_Item_PowerPlus_P_Alt },
 };
 
 ItemScript IES_Placeholder = IES_TEMPLATE_BASIC(key_Gift);
@@ -6411,7 +6551,6 @@ s32* gItemEntityScripts[] = {
     IES_Placeholder,
     IES_Placeholder,
     IES_Placeholder,
-    IES_HPPlus,
 };
 
 // indexed by itemID

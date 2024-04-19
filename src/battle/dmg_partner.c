@@ -388,6 +388,7 @@ HitResult calc_partner_damage_enemy(void) {
         }
 
         damageDealt = battleStatus->curAttackDamage + partner->attackBoost;
+        damageDealt += is_ability_active(ABILITY_POWER_PLUS_P);
 
         if (gBattleStatus.flags1 & BS_FLAGS1_TRIGGER_EVENTS) {
             if (battleStatus->curAttackElement & DAMAGE_TYPE_BLAST

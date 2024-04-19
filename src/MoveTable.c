@@ -1862,4 +1862,14 @@ MoveData gMoveTable[] = {
         .costFP = 0,
         .costBP = 5,
     },
+    {   // 0xBA: Power_Plus_P
+        .nameMsg = MSG_Name_Power_Plus_P,
+        .fullDescMsg = MSG_ItemFullDesc_Power_Plus_P,
+        .shortDescMsg = MSG_ItemShortDesc_Power_Plus_P,
+        .flags = TARGET_FLAG_SELECT_ONE | TARGET_FLAG_GROUND | TARGET_FLAG_ALLOW_TARGET_ONLY,
+        .category = MOVE_TYPE_NONE,
+        .actionTip = -1,
+        .costFP = 0,
+        .costBP = 6,
+    },
 };

@@ -343,32 +343,32 @@ enum ItemIDs {
     ITEM_ATTACK_FX_F3                       = 0x152,
     ITEM_ATTACK_FX_F4                       = 0x153,
     ITEM_ATTACK_FX_F5                       = 0x154,
-    ITEM_HP_PLUS_P                         = 0x155,
-    ITEM_PARTNER_ATTACK                     = 0x156,
-    ITEM_HEART                              = 0x157,
-    ITEM_COIN                               = 0x158,
-    ITEM_HEART_PIECE                        = 0x159,
-    ITEM_STAR_POINT                         = 0x15A,
-    ITEM_HEART_POINT                        = 0x15B,
-    ITEM_FLOWER_POINT                       = 0x15C,
-    ITEM_STAR_PIECE                         = 0x15D,
-    ITEM_PRESENT                            = 0x15E,
-    ITEM_CAKE_DONE                          = 0x15F,
-    ITEM_CAKE_BARE                          = 0x160,
-    ITEM_CAKE_PAN                           = 0x161,
-    ITEM_CAKE_BATTER                        = 0x162,
-    ITEM_CAKE_BOWL                          = 0x163,
-    ITEM_CAKE_MIXED                         = 0x164,
-    ITEM_CAKE_WITH_ICING                    = 0x165,
-    ITEM_CAKE_WITH_BERRIES                  = 0x166,
-    ITEM_MENU_HAMMER1                       = 0x167,
-    ITEM_MENU_HAMMER2                       = 0x168,
-    ITEM_MENU_HAMMER3                       = 0x169,
-    ITEM_MENU_BOOTS1                        = 0x16A,
-    ITEM_MENU_BOOTS2                        = 0x16B,
-    ITEM_MENU_BOOTS3                        = 0x16C,
-    ITEM_MENU_ITEMS                         = 0x16D,
-    
+    ITEM_PARTNER_ATTACK                     = 0x155,
+    ITEM_HEART                              = 0x156,
+    ITEM_COIN                               = 0x157,
+    ITEM_HEART_PIECE                        = 0x158,
+    ITEM_STAR_POINT                         = 0x159,
+    ITEM_HEART_POINT                        = 0x15A,
+    ITEM_FLOWER_POINT                       = 0x15B,
+    ITEM_STAR_PIECE                         = 0x15C,
+    ITEM_PRESENT                            = 0x15D,
+    ITEM_CAKE_DONE                          = 0x15E,
+    ITEM_CAKE_BARE                          = 0x15F,
+    ITEM_CAKE_PAN                           = 0x160,
+    ITEM_CAKE_BATTER                        = 0x161,
+    ITEM_CAKE_BOWL                          = 0x162,
+    ITEM_CAKE_MIXED                         = 0x163,
+    ITEM_CAKE_WITH_ICING                    = 0x164,
+    ITEM_CAKE_WITH_BERRIES                  = 0x165,
+    ITEM_MENU_HAMMER1                       = 0x166,
+    ITEM_MENU_HAMMER2                       = 0x167,
+    ITEM_MENU_HAMMER3                       = 0x168,
+    ITEM_MENU_BOOTS1                        = 0x169,
+    ITEM_MENU_BOOTS2                        = 0x16A,
+    ITEM_MENU_BOOTS3                        = 0x16B,
+    ITEM_MENU_ITEMS                         = 0x16C,
+    ITEM_HP_PLUS_P                         = 0x16D,
+    ITEM_POWER_PLUS_P                      = 0x16E,
 };
 
 #define ITEM_FIRST_KEY              ITEM_KOOPA_FORTRESS_KEY
@@ -376,12 +376,14 @@ enum ItemIDs {
 #define ITEM_FIRST_CONSUMABLE       ITEM_FIRE_FLOWER
 #define ITEM_LAST_CONSUMABLE        ITEM_JELLY_SHROOM1
 #define ITEM_FIRST_BADGE            ITEM_SPIN_SMASH
-#define ITEM_LAST_BADGE             ITEM_HP_PLUS_P
+#define ITEM_LAST_BADGE             ITEM_ATTACK_FX_F5
+#define ITEM_FIRST_CUSTOM_BADGE     ITEM_HP_PLUS_P
+#define ITEM_LAST_CUSTOM_BADGE      ITEM_POWER_PLUS_P
 
 #define ITEM_NUM_KEYS (ITEM_LAST_KEY - ITEM_FIRST_KEY + 1)
 #define ITEM_NUM_CONSUMABLES (ITEM_LAST_CONSUMABLE - ITEM_FIRST_CONSUMABLE + 1)
 
 #define IS_ITEM(itemID) (itemID >= ITEM_FIRST_KEY && itemID <= ITEM_LAST_CONSUMABLE)
-#define IS_BADGE(itemID) (itemID >= ITEM_FIRST_BADGE && itemID <= ITEM_LAST_BADGE)
+#define IS_BADGE(itemID) ((itemID >= ITEM_FIRST_CUSTOM_BADGE && itemID <= ITEM_LAST_CUSTOM_BADGE) || (itemID >= ITEM_FIRST_BADGE && itemID <= ITEM_LAST_BADGE))
 
 #endif // ITEM_ENUM_H

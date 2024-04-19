@@ -47,31 +47,6 @@ extern HudScript HES_StatusStarEmpty;
 
 extern HudScript* SlashHudScript;
 
-// IconHudScriptPair gPartnerIconHudScripts[] = {
-//     { .enabled = &HES_Partner0, .disabled = &HES_Partner0Disabled },
-//     { .enabled = &HES_Goombario, .disabled = &HES_GoombarioDisabled },
-//     { .enabled = &HES_Kooper, .disabled = &HES_KooperDisabled },
-//     { .enabled = &HES_Bombette, .disabled = &HES_BombetteDisabled },
-//     { .enabled = &HES_Parakarry, .disabled = &HES_ParakarryDisabled },
-//     { .enabled = &HES_Bow, .disabled = &HES_BowDisabled },
-//     { .enabled = &HES_Watt, .disabled = &HES_WattDisabled },
-//     { .enabled = &HES_Sushie, .disabled = &HES_SushieDisabled },
-//     { .enabled = &HES_Lakilester, .disabled = &HES_LakilesterDisabled },
-//     { .enabled = &HES_Partner9, .disabled = &HES_Partner9Disabled },
-//     { .enabled = &HES_PartnerA, .disabled = &HES_PartnerADisabled },
-//     { .enabled = &HES_PartnerB, .disabled = &HES_PartnerBDisabled },
-//     { .enabled = &HES_PartnerB, .disabled = &HES_PartnerBDisabled },
-// };
-
-// HudScript CurPartnerHudScript = {
-//     hs_SetVisible
-//     hs_SetTileSize(HUD_ELEMENT_SIZE_32x32)
-//     hs_Loop
-//     HUD_ELEMENT_OP_SetCI, 60, fontDivisionSymbolRaster, fontPalette,
-//     hs_Restart
-//     hs_End
-// };
-
 extern IconHudScriptPair gPartnerIconHudScripts[];
 
 void status_bar_start_blinking_coins(void);
@@ -698,8 +673,6 @@ void update_status_bar(void) {
         status_bar_start_blinking_coins();
     }
 
-    PrintCurrentBadges();
-
     // update coin counter (+1 coin per frame for each 5-coin delta)
     i = playerData->coins - statusBar->displayCoins;
     if (i < 0) {
@@ -872,7 +845,7 @@ void update_status_bar(void) {
     DRAW_BOX(0, (WindowStyle)WINDOW_STYLE_26, x + hp_bar_offset_x, y + hp_bar_offset_y + 0x15, hp_bar_width, hp_bar_height, 255);
     
     //draw fp bar
-    DRAW_BOX(0, (WindowStyle)WINDOW_STYLE_23, x + hp_bar_offset_x + 92, y + hp_bar_offset_y, 91, 28, 255);
+    DRAW_BOX(0, (WindowStyle)WINDOW_STYLE_23, x + hp_bar_offset_x + 92, y + hp_bar_offset_y, 93, 28, 255);
     
     //draw coins/exp box
     DRAW_BOX(0, (WindowStyle)WINDOW_STYLE_25, x + hp_bar_offset_x + 178, y + hp_bar_offset_y, 116, hp_bar_height, 255);
@@ -2063,6 +2036,11 @@ s32 is_ability_active(s32 ability) {
                 break;
             case ABILITY_HP_PLUS_P:
                 if (badgeMoveID == MOVE_HP_PLUS_P) {
+                    ret++;
+                }
+                break;
+            case ABILITY_POWER_PLUS_P:
+                if (badgeMoveID == MOVE_POWER_PLUS_P) {
                     ret++;
                 }
                 break;

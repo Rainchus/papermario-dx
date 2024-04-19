@@ -339,9 +339,12 @@ void filemenu_yesno_handle_input(MenuPanel* menu) {
                         gPlayerData.badges[0] = ITEM_POWER_PLUS_A;
                         gPlayerData.badges[1] = ITEM_POWER_PLUS_B;
                         gPlayerData.badges[2] = ITEM_HP_PLUS_P;
+                        gPlayerData.badges[3] = ITEM_POWER_PLUS_P;
                         gPlayerData.equippedBadges[0] = ITEM_POWER_PLUS_A;
                         gPlayerData.equippedBadges[1] = ITEM_POWER_PLUS_B;
                         gPlayerData.equippedBadges[2] = ITEM_HP_PLUS_P;
+                        gPlayerData.equippedBadges[3] = ITEM_POWER_PLUS_P;
+                        
                         slot2 = filemenu_menus[0]->selected;
                         for (i = 0; i < ARRAY_COUNT(gSaveSlotMetadata->filename); i++) {
                             gSaveSlotMetadata[slot2].filename[i] = filemenu_filename[i];
