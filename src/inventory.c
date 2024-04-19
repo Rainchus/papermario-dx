@@ -2039,8 +2039,13 @@ s32 is_ability_active(s32 ability) {
                     ret++;
                 }
                 break;
-            case ABILITY_POWER_PLUS_P:
-                if (badgeMoveID == MOVE_POWER_PLUS_P) {
+            case ABILITY_P_UP_D_DOWN_P:
+                if (badgeMoveID == MOVE_P_UP_D_DOWN_P) {
+                    ret++;
+                }
+                break;
+            case ABILITY_P_DOWN_D_UP_P:
+                if (badgeMoveID == MOVE_P_DOWN_D_UP) {
                     ret++;
                 }
                 break;

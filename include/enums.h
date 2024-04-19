@@ -490,7 +490,8 @@ enum Abilities {
     ABILITY_PEEKABOO                = 0x00000036,
     ABILITY_HEALTHY_HEALTHY         = 0x00000037,
     ABILITY_HP_PLUS_P               = 0x00000038,
-    ABILITY_POWER_PLUS_P               = 0x00000039,
+    ABILITY_P_UP_D_DOWN_P           = 0x00000039,
+    ABILITY_P_DOWN_D_UP_P           = 0x0000003A,
 };
 
 enum Emotes {
@@ -3746,7 +3747,8 @@ enum MoveIDs {
 
     //custom moves/badges
     MOVE_HP_PLUS_P                          = 0x0B9,
-    MOVE_POWER_PLUS_P                       = 0x0BA,
+    MOVE_P_UP_D_DOWN_P                       = 0x0BA,
+    MOVE_P_DOWN_D_UP_P                       = 0x0BB,
 };
 
 #define STAR_POWER_INDEX(x) (x - MOVE_FOCUS)

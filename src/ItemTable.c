@@ -123,13 +123,57 @@ HudScript HES_Item_PowerPlus_P_Alt = {
     hs_End
 };
 
+//MOD TODO: uses hp plus's icon currently
+HudScript HES_Item_P_UP_D_DOWN_P = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_32x32)
+    hs_Loop
+    HUD_ELEMENT_OP_SetCI, 60, HPPlusRaster, HPPlusPalette,
+    hs_Restart
+    hs_End
+};
+
+//MOD TODO: uses hp plus's icon currently
+HudScript HES_Item_P_UP_D_DOWN_P_Alt = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_32x32)
+    hs_Loop
+    HUD_ELEMENT_OP_SetCI, 60, HPPlusRaster_Alt, HPPlusPalette_Alt,
+    hs_Restart
+    hs_End
+};
+
+//MOD TODO: uses hp plus's icon currently
+HudScript HES_Item_P_DOWN_D_UP_P = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_32x32)
+    hs_Loop
+    HUD_ELEMENT_OP_SetCI, 60, HPPlusRaster, HPPlusPalette,
+    hs_Restart
+    hs_End
+};
+
+//MOD TODO: uses hp plus's icon currently
+HudScript HES_Item_P_DOWN_D_UP_P_Alt = {
+    hs_SetVisible
+    hs_SetTileSize(HUD_ELEMENT_SIZE_32x32)
+    hs_Loop
+    HUD_ELEMENT_OP_SetCI, 60, HPPlusRaster_Alt, HPPlusPalette_Alt,
+    hs_Restart
+    hs_End
+};
+
 #define MSG_Name_HP_Plus_P MESSAGE_ID(0x30, 0x000)
 #define MSG_ItemFullDesc_HP_Plus_P MESSAGE_ID(0x30, 0x001)
 #define MSG_ItemShortDesc_HP_Plus_P MESSAGE_ID(0x30, 0x002)
 
-#define MSG_Power_Plus_P_Name MESSAGE_ID(0x30, 0x003)
-#define MSG_ItemFullDesc_Power_Plus_P MESSAGE_ID(0x30, 0x004)
-#define MSG_ItemShortDesc_Power_Plus_P MESSAGE_ID(0x30, 0x005)
+#define MSG_Name_P_UP_D_DOWN_P MESSAGE_ID(0x30, 0x003)
+#define MSG_ItemFullDesc_P_UP_D_DOWN_P MESSAGE_ID(0x30, 0x004)
+#define MSG_ItemShortDesc_P_UP_D_DOWN_P MESSAGE_ID(0x30, 0x005)
+
+#define MSG_Name_P_DOWN_D_UP_P MESSAGE_ID(0x30, 0x006)
+#define MSG_ItemFullDesc_P_DOWN_D_UP_P MESSAGE_ID(0x30, 0x007)
+#define MSG_ItemShortDesc_P_DOWN_D_UP_P MESSAGE_ID(0x30, 0x008)
 
 HudScript HES_Item_Present = HES_TEMPLATE_STANDARD_ITEM(key_Gift);
 HudScript HES_Item_CakeDone = HES_TEMPLATE_STANDARD_ITEM(key_CakeDone);
@@ -5467,16 +5511,29 @@ ItemData gItemTable[] = {
         .potencyA = 0,
         .potencyB = 0,
     },
-    {   // 0x16E: PowerPlusP
-        .nameMsg = MSG_Power_Plus_P_Name,
-        .fullDescMsg = MSG_ItemFullDesc_Power_Plus_P,
-        .shortDescMsg = MSG_ItemShortDesc_Power_Plus_P,
-        .hudElemID = 338, // HES_Item_PowerPlus
+    {   // 0x16E: P_UP_D_DOWN_P
+        .nameMsg = MSG_Name_P_UP_D_DOWN_P,
+        .fullDescMsg = MSG_ItemFullDesc_P_UP_D_DOWN_P,
+        .shortDescMsg = MSG_ItemShortDesc_P_UP_D_DOWN_P,
+        .hudElemID = 338, // HES_Item_P_UP_D_DOWN_P
         .sellValue = 150,
         .sortValue = 53,
         .targetFlags = 0,
         .typeFlags = ITEM_TYPE_FLAG_BADGE | ITEM_TYPE_FLAG_ENTITY_FULLSIZE,
-        .moveID = MOVE_POWER_PLUS_P,
+        .moveID = MOVE_P_UP_D_DOWN_P,
+        .potencyA = 0,
+        .potencyB = 0,
+    },
+    {   // 0x16F: P_DOWN_D_UP_P
+        .nameMsg = MSG_Name_P_DOWN_D_UP_P,
+        .fullDescMsg = MSG_ItemFullDesc_P_DOWN_D_UP_P,
+        .shortDescMsg = MSG_ItemShortDesc_P_DOWN_D_UP_P,
+        .hudElemID = 339, // HES_Item_P_DOWN_D_UP_P
+        .sellValue = 150,
+        .sortValue = 53,
+        .targetFlags = 0,
+        .typeFlags = ITEM_TYPE_FLAG_BADGE | ITEM_TYPE_FLAG_ENTITY_FULLSIZE,
+        .moveID = MOVE_P_DOWN_D_UP_P,
         .potencyA = 0,
         .potencyB = 0,
     },
@@ -5824,7 +5881,8 @@ IconHudScriptPair gItemHudScripts[] = {
     { .enabled = &HES_Item_MenuBoots3, .disabled = &HES_Item_MenuBoots3 },
     { .enabled = &HES_Item_MenuItems, .disabled = &HES_Item_MenuItems },
     { .enabled = &HES_Item_HPPlus_P, .disabled = &HES_Item_HPPlus_P_Alt },
-    { .enabled = &HES_Item_PowerPlus_P, .disabled = &HES_Item_PowerPlus_P_Alt },
+    { .enabled = &HES_Item_P_UP_D_DOWN_P, .disabled = &HES_Item_P_UP_D_DOWN_P_Alt },
+    { .enabled = &HES_Item_P_DOWN_D_UP_P, .disabled = &HES_Item_P_DOWN_D_UP_P_Alt },
 };
 
 ItemScript IES_Placeholder = IES_TEMPLATE_BASIC(key_Gift);

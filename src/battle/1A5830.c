@@ -247,7 +247,6 @@ HitResult calc_enemy_damage_target(Actor* attacker) {
     s32 isIce = FALSE;
     s32 isElectric = FALSE;
     s32 madeElectricContact = FALSE;
-    s32 isPlayer;
     s32 defense;
     s32 event;
     s32 damage;
@@ -411,24 +410,33 @@ HitResult calc_enemy_damage_target(Actor* attacker) {
 
     // apply damage mitigation from defensive badges
 
-    isPlayer = actorClass == ACTOR_CLASS_PLAYER;
-    if (isPlayer) {
-        if (player_team_is_ability_active(target, ABILITY_FIRE_SHIELD)) {
-            if (battleStatus->curAttackElement & DAMAGE_TYPE_FIRE) {
-                damage--;
-            }
-        }
 
-        damage -= player_team_is_ability_active(target, ABILITY_DEFEND_PLUS);
-        damage -= player_team_is_ability_active(target, ABILITY_P_DOWN_D_UP);
-        damage += player_team_is_ability_active(target, ABILITY_P_UP_D_DOWN);
 
-        if (target->curHP <= 5) {
-            if (player_team_is_ability_active(target, ABILITY_LAST_STAND)) {
-                damage /= 2;
+    switch (actorClass) {
+        case ACTOR_CLASS_PLAYER:
+            if (player_team_is_ability_active(target, ABILITY_FIRE_SHIELD)) {
+                if (battleStatus->curAttackElement & DAMAGE_TYPE_FIRE) {
+                    damage--;
+                }
             }
-        }
+            damage -= is_ability_active(ABILITY_DEFEND_PLUS);
+            damage -= is_ability_active(ABILITY_P_DOWN_D_UP);
+            damage += is_ability_active(ABILITY_P_UP_D_DOWN);
+
+            if (target->curHP <= 5) {
+                if (is_ability_active(ABILITY_LAST_STAND)) {
+                    damage /= 2;
+                }
+            }
+            break;
+        case ACTOR_CLASS_PARTNER:
+            damage += is_ability_active(ABILITY_P_UP_D_DOWN_P);
+            damage -= is_ability_active(ABILITY_P_DOWN_D_UP_P);
+            break;
+        case ACTOR_CLASS_ENEMY:
+            break;
     }
+    
 
     // apply damage mitigation from blocking
 
