@@ -213,7 +213,7 @@ void pause_tabs_draw_stats(MenuPanel* menu, s32 baseX, s32 baseY, s32 width, s32
     hud_element_set_render_pos(gPauseTabsIconIDs[0], baseX + 22, baseY + 7);
     hud_element_draw_without_clipping(gPauseTabsIconIDs[0]);
     if (gPauseMenuCurrentTab == 0) {
-        if (gPauseTabsWindowIDs[menu->col] == 25) {
+        if (gPauseTabsWindowIDs[menu->col] == WINDOW_ID_PAUSE_TAB_STATS) {
             pause_set_cursor_pos(gPauseTabsWindowIDs[menu->col], baseX + TABS_CURSOR_OFFSET_X, baseY + 6);
         }
     }

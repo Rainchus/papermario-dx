@@ -1852,4 +1852,14 @@ MoveData gMoveTable[] = {
         .costFP = 0,
         .costBP = 0,
     },
+    {   // 0xB9: HP_Plus_P
+        .nameMsg = MSG_ItemName_HPPlus,
+        .fullDescMsg = MSG_ItemFullDesc_HPPlus,
+        .shortDescMsg = MSG_ItemShortDesc_HPPlus,
+        .flags = TARGET_FLAG_SELECT_ONE | TARGET_FLAG_GROUND | TARGET_FLAG_ALLOW_TARGET_ONLY,
+        .category = MOVE_TYPE_NONE,
+        .actionTip = -1,
+        .costFP = 0,
+        .costBP = 5,
+    },
 };

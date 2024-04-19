@@ -154,7 +154,7 @@ HitResult calc_enemy_test_target(Actor* actor) {
             target->curHP = playerData->curHP;
             break;
         case ACTOR_CLASS_PARTNER:
-            target->curHP = playerData->partners[playerData->curPartner].curHp;
+            target->curHP = playerData->partners[playerData->curPartner].curHP;
             break;
         case ACTOR_CLASS_ENEMY:
             break;
@@ -276,7 +276,7 @@ HitResult calc_enemy_damage_target(Actor* attacker) {
             target->curHP = gPlayerData.curHP;
             break;
         case ACTOR_CLASS_PARTNER:
-            target->curHP = gPlayerData.partners[gPlayerData.curPartner].curHp;
+            target->curHP = gPlayerData.partners[gPlayerData.curPartner].curHP;
             break;
         case ACTOR_CLASS_ENEMY:
             break;
@@ -687,9 +687,9 @@ HitResult calc_enemy_damage_target(Actor* attacker) {
         && gBattleStatus.flags1 & BS_FLAGS1_TRIGGER_EVENTS
         && !(target->flags & ACTOR_FLAG_NO_DMG_APPLY))
     {
-        gPlayerData.partners[gPlayerData.curPartner].curHp -= battleStatus->lastAttackDamage;
-        if (gPlayerData.partners[gPlayerData.curPartner].curHp > 100) { //hp underflowed, set to 0
-            gPlayerData.partners[gPlayerData.curPartner].curHp = 0;
+        gPlayerData.partners[gPlayerData.curPartner].curHP -= battleStatus->lastAttackDamage;
+        if (gPlayerData.partners[gPlayerData.curPartner].curHP > 100) { //hp underflowed, set to 0
+            gPlayerData.partners[gPlayerData.curPartner].curHP = 0;
             inflict_partner_ko(target, STATUS_KEY_DAZE, battleStatus->lastAttackDamage);
         }
         //inflict_partner_ko(target, STATUS_KEY_DAZE, battleStatus->lastAttackDamage); //subtract partner hp here?
@@ -2650,7 +2650,7 @@ ApiStatus GetActorHP(Evt* script, s32 isInitialCall) {
             outVal = playerData->curHP;
             break;
         case ACTOR_CLASS_PARTNER:
-            outVal = playerData->partners[playerData->curPartner].curHp;
+            outVal = playerData->partners[playerData->curPartner].curHP;
             break;
         default:
             outVal = actor->curHP;

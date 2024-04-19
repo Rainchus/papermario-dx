@@ -489,6 +489,7 @@ enum Abilities {
     ABILITY_GROUP_FOCUS             = 0x00000035,
     ABILITY_PEEKABOO                = 0x00000036,
     ABILITY_HEALTHY_HEALTHY         = 0x00000037,
+    ABILITY_HP_PLUS_P               = 0x00000038,
 };
 
 enum Emotes {
@@ -1821,7 +1822,7 @@ enum AuxCameraParams {
     AUX_CAM_ZOOM_PERCENT        = 8
 };
 
-#include "item_enum.h"
+#include "item_enums.h"
 
 // used for chest and give item events
 enum GotItemType {
@@ -3741,6 +3742,9 @@ enum MoveIDs {
     MOVE_OUTTA_SIGHT                        = 0x0B6,
     MOVE_SPOOK                              = 0x0B7,
     MOVE_FAN_SMACK                          = 0x0B8,
+
+    //custom moves/badges
+    MOVE_HP_PLUS_P                          = 0x0B9,
 };
 
 #define STAR_POWER_INDEX(x) (x - MOVE_FOCUS)

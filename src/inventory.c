@@ -166,9 +166,9 @@ void clear_player_data(void) {
             playerData->partners[i].enabled = FALSE;
         #endif
         playerData->partners[i].level = 3;
-        playerData->partners[i].curHp = partnerHpList[i].level0Hp;
-        playerData->partners[i].maxHp = partnerHpList[i].level0Hp;
-        playerData->partners[i].trueMaxHp = partnerHpList[i].level0Hp;
+        playerData->partners[i].curHP = partnerHpList[i].level0Hp;
+        playerData->partners[i].curMaxHP = partnerHpList[i].level0Hp;
+        playerData->partners[i].hardMaxHP = partnerHpList[i].level0Hp;
     }
 
     evt_set_variable(NULL, GB_StoryProgress, NEW_GAME_STORY_PROGRESS);
@@ -390,6 +390,7 @@ s32 get_stored_empty_count(void) {
 
 void enforce_hpfp_limits(void) {
     PlayerData* playerData = &gPlayerData;
+    PartnerData* partnerData = &gPlayerData.partners[gPlayerData.curPartner];
 
     playerData->curMaxHP = playerData->hardMaxHP + (is_ability_active(ABILITY_HP_PLUS) * 5);
     if (playerData->curMaxHP > 150) {
@@ -405,6 +406,15 @@ void enforce_hpfp_limits(void) {
     }
     if (playerData->curFP > playerData->curMaxFP) {
         playerData->curFP = playerData->curMaxFP;
+    }
+
+    //for current partner
+    partnerData->curMaxHP = partnerData->hardMaxHP + (is_ability_active(ABILITY_HP_PLUS_P) * 5);
+    if (partnerData->curMaxHP > 150) {
+        partnerData->curMaxHP = 150;
+    }
+    if (partnerData->curHP > partnerData->curMaxHP) {
+        partnerData->curHP = partnerData->curMaxHP;
     }
 }
 
@@ -688,6 +698,8 @@ void update_status_bar(void) {
         status_bar_start_blinking_coins();
     }
 
+    PrintCurrentBadges();
+
     // update coin counter (+1 coin per frame for each 5-coin delta)
     i = playerData->coins - statusBar->displayCoins;
     if (i < 0) {
@@ -922,7 +934,7 @@ void update_status_bar(void) {
         y = statusBar->drawPosY + 28;
         {
             s32 curPartner = playerData->curPartner;
-            status_bar_draw_stat(statusBar->hpTimesHID, x, y, playerData->partners[curPartner].curHp, playerData->partners[curPartner].maxHp);
+            status_bar_draw_stat(statusBar->hpTimesHID, x, y, playerData->partners[curPartner].curHP, playerData->partners[curPartner].curMaxHP);
         } 
     }
 
@@ -2046,6 +2058,11 @@ s32 is_ability_active(s32 ability) {
                 break;
             case ABILITY_HEALTHY_HEALTHY:
                 if (badgeMoveID == MOVE_HEALTHY_HEALTHY) {
+                    ret++;
+                }
+                break;
+            case ABILITY_HP_PLUS_P:
+                if (badgeMoveID == MOVE_HP_PLUS_P) {
                     ret++;
                 }
                 break;

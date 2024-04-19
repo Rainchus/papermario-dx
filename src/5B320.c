@@ -292,7 +292,9 @@ HudScript HES_HandPointLeftHeld = {
     hs_End
 };
 
-#include "item_data.inc.c"
+#include "ItemTable.c"
+
+// #include "item_data.inc.c"
 
 //TODO split for partner popup menu data?
 

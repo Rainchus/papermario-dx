@@ -407,6 +407,31 @@ ApiStatus GetCurrentPartnerLevel(Evt* script, s32 isInitialCall) {
 	return ApiStatus_DONE2;
 }
 
+void PrintCurrentBadges(void) {
+    char buffer[8];
+    int i, j;
+    int x = 50;
+    int y = 60;
+
+    for (i = 0; i < ARRAY_COUNT(gPlayerData.badges); i++) {
+        if (gPlayerData.badges[i] == 0) {
+            break;
+        }
+        //if badge is valid id, print id
+        bzero(buffer, sizeof(buffer));
+        sprintf(buffer, "%d", gPlayerData.badges[i]);
+        for (j = 0; j < sizeof(buffer); j++) {
+            if (buffer[j] == 0) {
+                buffer[j] = 0xFD;
+                break;
+            }
+            buffer[j] = buffer[j] - 0x20; //convert to pm64 format number
+        }
+        draw_msg((s32)buffer, x, y, 255, 0, 0);
+        y += 15;
+    }
+}
+
 #if VERSION_IQUE
 static const f32 rodata_padding[] = {0.0f, 0.0f};
 #endif

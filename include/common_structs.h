@@ -153,9 +153,9 @@ typedef struct DmaTable {
 typedef struct PartnerData {
     /* 0x00 */ u8 enabled;
     /* 0x01 */ s8 level;
-    /* 0x02 */ s16 curHp;
-    /* 0x04 */ s16 maxHp;
-    /* 0x06 */ s16 trueMaxHp;
+    /* 0x02 */ s16 curHP;
+    /* 0x04 */ s16 curMaxHP;
+    /* 0x06 */ s16 hardMaxHP;
 } PartnerData; // size = 0x08
 
 typedef struct HeapNode {

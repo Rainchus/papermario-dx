@@ -29,14 +29,23 @@ s32 N(map_init)(void) {
     return FALSE;
 }
 
+EvtScript N(EVS_MakeEntities) = {
+    EVT_CALL(MakeItemEntity, ITEM_HP_PLUS_A, 0, 0, 0, ITEM_SPAWN_MODE_FALL_NEVER_VANISH, GF_FLO09_Item_HappyFlowerB)
+    EVT_RETURN
+    EVT_END
+};
+
 EvtScript N(EVS_Main) = {
     EVT_SET(GB_WorldLocation, LOCATION_TESTING)
     EVT_CALL(SetSpriteShading, SHADING_NONE)
     EVT_SETUP_CAMERA_DEFAULT()
     EVT_EXEC(N(EVS_StartTexPanners))
+    EVT_EXEC_WAIT(N(EVS_MakeEntities))
+    EVT_SET(GB_StoryProgress, 0xA0)
     EVT_SET(LVar0, EVT_PTR(N(EVS_BindExitTriggers)))
     EVT_EXEC(EnterWalk)
     EVT_WAIT(1)
     EVT_RETURN
     EVT_END
 };
+//8009F8E5
