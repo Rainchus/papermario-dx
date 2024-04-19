@@ -5,6 +5,8 @@
 #include "battle/action_cmd/jump.h"
 #include "sprite/npc/BattleGoombario.h"
 
+ApiStatus GetCurrentPartnerLevel(Evt* script, s32 isInitialCall);
+
 #define NAMESPACE battle_partner_goombario
 
 extern s32 bActorTattles[];
@@ -969,14 +971,16 @@ EvtScript N(EVS_Attack_Headbonk1) = {
     EVT_END_CHILD_THREAD
     EVT_WAIT(1)
     EVT_CALL(GetPartnerActionSuccess, LVar0)
+    EVT_CALL(GetCurrentPartnerLevel, LVar1)
+    EVT_ADD(LVar1, 1)
     EVT_SWITCH(LVar0)
         EVT_CASE_GT(0)
             EVT_CALL(N(GetChargeAmount))
-            EVT_ADD(LVar0, 1)
+            EVT_ADD(LVar0, LVar1)
             EVT_CALL(PartnerDamageEnemy, LVar0, DAMAGE_TYPE_JUMP, 0, 0, LVar0, BS_FLAGS1_NICE_HIT | BS_FLAGS1_INCLUDE_POWER_UPS)
         EVT_CASE_DEFAULT
             EVT_CALL(N(StopChargeAndGet))
-            EVT_ADD(LVar0, 1)
+            EVT_ADD(LVar0, LVar1)
             EVT_CALL(PartnerDamageEnemy, LVar0, DAMAGE_TYPE_JUMP, 0, 0, LVar0, BS_FLAGS1_TRIGGER_EVENTS | BS_FLAGS1_INCLUDE_POWER_UPS)
     EVT_END_SWITCH
     EVT_CALL(PlaySoundAtActor, ACTOR_PARTNER, SOUND_NONE)
@@ -1011,11 +1015,23 @@ EvtScript N(EVS_Attack_Headbonk1) = {
             EVT_CALL(SetActorRotation, ACTOR_SELF, 0, 0, LVar0)
             EVT_WAIT(1)
         EVT_END_LOOP
+        EVT_CALL(GetCurrentPartnerLevel, LVar1)
+        EVT_IF_GT(LVar1, 0)
+            EVT_CALL(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleGoombario_Headbonk)
+        EVT_END_IF
     EVT_END_THREAD
     EVT_CALL(SetGoalToTarget, ACTOR_PARTNER)
+    EVT_CALL(GetCurrentPartnerLevel, LVar1)
+    EVT_IF_GT(LVar1, 0)
+        EVT_CALL(EnableActorBlur, ACTOR_PARTNER, ACTOR_BLUR_ENABLE)
+    EVT_END_IF
     EVT_CALL(SetJumpAnimations, ACTOR_PARTNER, 0, ANIM_BattleGoombario_Headbonk, ANIM_BattleGoombario_Headbonk, ANIM_BattleGoombario_Headbonk)
     EVT_CALL(PlaySoundAtActor, ACTOR_PARTNER, SOUND_GOOMBARIO_HEADBONK)
     EVT_CALL(N(JumpOnTarget), LVarA, 3)
+    EVT_CALL(GetCurrentPartnerLevel, LVar1)
+    EVT_IF_GT(LVar1, 0)
+        EVT_CALL(EnableActorBlur, ACTOR_PARTNER, ACTOR_BLUR_RESET)
+    EVT_END_IF
     EVT_CHILD_THREAD
         EVT_CALL(SetActorScale, ACTOR_PARTNER, EVT_FLOAT(1.1), EVT_FLOAT(0.8), EVT_FLOAT(1.0))
         EVT_WAIT(1)
@@ -1025,7 +1041,9 @@ EvtScript N(EVS_Attack_Headbonk1) = {
     EVT_END_CHILD_THREAD
     EVT_WAIT(1)
     EVT_CALL(N(StopChargeAndGet))
-    EVT_ADD(LVar0, 1)
+    EVT_CALL(GetCurrentPartnerLevel, LVar1)
+    EVT_ADD(LVar1, 1)
+    EVT_ADD(LVar0, LVar1)
     EVT_CALL(PartnerDamageEnemy, LVar0, DAMAGE_TYPE_JUMP, 0, 0, LVar0, BS_FLAGS1_TRIGGER_EVENTS)
     EVT_CALL(PlaySoundAtActor, ACTOR_PARTNER, SOUND_NONE)
     EVT_CALL(SetActionResult, LVarF)
