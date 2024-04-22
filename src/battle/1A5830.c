@@ -2749,7 +2749,7 @@ ApiStatus DropStarPoints(Evt* script, s32 isInitialCall) {
     }
     numToDrop = ntd;
 
-    if (playerData->level < 27) {
+    if (playerData->level < 55) { //100/100/60 cap update
         s32 spawnMode;
         s32 i;
 
