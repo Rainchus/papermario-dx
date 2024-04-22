@@ -27,7 +27,10 @@
 /// Press L + D-Pad Up to show/hide the profiler.
 #define USE_PROFILER 1
 
-#define GIVE_ALL_PARTNERS 1 //except goompa(5), goombaria(10), and twink(11)
+#define NORMAL_PARTNERS 1  //except goompa(5), goombaria(10), and twink(11)
+#define ALL_PARTNERS 2
+
+#define GIVE_ALL_PARTNERS NORMAL_PARTNERS
 
 #define GIVE_PLAYER_STARTING_EQUIPMENT 1
 

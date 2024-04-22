@@ -135,10 +135,14 @@ void clear_player_data(void) {
     #endif
 
     for (i = 0; i < ARRAY_COUNT(playerData->partners); i++) {
-        #if GIVE_ALL_PARTNERS == 1
-            playerData->partners[i].enabled = TRUE;
-        #else
+        #if GIVE_ALL_PARTNERS == 0
             playerData->partners[i].enabled = FALSE;
+        #elif GIVE_ALL_PARTNERS == NORMAL_PARTNERS
+            if (i == PARTNER_GOOMPA || i == PARTNER_GOOMBARIA || i == PARTNER_TWINK) {
+                playerData->partners[i].enabled = TRUE;
+            }
+        #else GIVE_ALL_PARTNERS == ALL_PARTNERS
+            playerData->partners[i].enabled = TRUE;
         #endif
         playerData->partners[i].level = 3;
         playerData->partners[i].curHP = partnerHpList[i].level0Hp;
