@@ -138,7 +138,7 @@ void clear_player_data(void) {
         #if GIVE_ALL_PARTNERS == 0
             playerData->partners[i].enabled = FALSE;
         #elif GIVE_ALL_PARTNERS == NORMAL_PARTNERS
-            if (i == PARTNER_GOOMPA || i == PARTNER_GOOMBARIA || i == PARTNER_TWINK) {
+            if (i != PARTNER_GOOMPA || i != PARTNER_GOOMBARIA || i != PARTNER_TWINK) {
                 playerData->partners[i].enabled = TRUE;
             }
         #else GIVE_ALL_PARTNERS == ALL_PARTNERS
